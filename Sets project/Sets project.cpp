@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
-	InputSetInteger();
+	showMenu();
+	/*InputSetInteger();*/
 }
 
