@@ -4,4 +4,5 @@
 #include <vector>
 
 using namespace std;
-void showMenu();
+void greetings();
+bool showMenu();
