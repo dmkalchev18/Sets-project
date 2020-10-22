@@ -9,6 +9,7 @@ int main()
 {
 	greetings();
 	while (showMenu()) {};
+	goodbyeMessage();
 	/*InputSetInteger();*/
 }
 

@@ -3,12 +3,15 @@
 #include <string>
 
 void greetings() {
-	cout << "\t\t\t\t\t\tHello User,\n";
-	cout << "\n\t\tWelcome to the <program_name> ! ! !\n\n";
-	cout << "\t   We are thankful that you use our program\n";
-	cout << "\t\t\t\t\t\t\t\t\t\t\t\tHave fun!\n\n";
+	cout << "\t\t\t\t\t\t  Hello User,\n";
+	cout << "\n\t\t   Welcome to the <program_name> !!! ";
+	cout << "We are thankful that you use our program\n\n";
+	cout << "\t\t\t\t\t\t  Have fun!!!\n\n";
 }
-
+void goodbyeMessage() {
+	cout << "\n\n\nThank you for using <program_name>!!!\n";
+	cout << "Copyright (c) 2020 Technical Knockout\n";
+}
 bool showMenu() {
 	int userInput;
 	for (int i = 0; i < 120; i++) {
@@ -37,7 +40,7 @@ bool showMenu() {
 	case 4:break;
 	case 5:break;
 	case 6:break;
-	case 7:break;
+	case 7:return false; break;
 	default:cout << "Incorrect input!!! Please try again!\n"; return false;
 		break;
 	}
