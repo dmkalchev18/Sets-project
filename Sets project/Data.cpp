@@ -143,3 +143,17 @@ bool subSetString(vector<string> firstSet, vector<string> secondSet) {
 	}
 	return false;
 }
+
+vector<string> unionSetIntiger(vector<string> firstSet, vector<string> secondSet) {
+	vector<string> unionSet;
+	for (int i = 0; i < firstSet.size(); i++) {
+		unionSet.push_back(firstSet[i]);
+	}
+
+	for (int i = 0; i < secondSet.size(); i++) {
+		if (!findStringVector(unionSet, secondSet[i])) {
+			unionSet.push_back(secondSet[i]);
+		}
+	}
+	return unionSet;
+}
