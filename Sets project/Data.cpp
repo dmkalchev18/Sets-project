@@ -104,3 +104,42 @@ vector<int> differenceSetInteger(vector<int>firstSet, vector<int>secondSet) {
 	}
 	return differenceSet;
 }
+
+// ------------------------------------------
+vector<string> inputSetString(int counter) {
+	vector<string> stringSet;
+	string stringVar;
+	for (int i = 0; i < counter; i++)
+	{
+		cin >> stringVar;
+		stringSet.push_back(stringVar);
+	}
+	return stringSet;
+}
+
+bool findStringVector (vector<string> Set, string Word) {
+	for (int i = 0; i < Set.size(); i++)
+	{
+		if (Set[i] == Word) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool subSetString(vector<string> firstSet, vector<string> secondSet) {
+	int counter = 0;
+	for (int i = 0; i < firstSet.size(); i++) {
+		for (int j = 0; j < secondSet.size(); j++) {
+
+			if (firstSet[i] == secondSet[j]) {
+				counter++;
+			}
+		}
+	}
+	if (counter == firstSet.size()) 
+	{
+		return true;
+	}
+	return false;
+}
