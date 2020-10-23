@@ -157,3 +157,27 @@ vector<string> unionSetIntiger(vector<string> firstSet, vector<string> secondSet
 	}
 	return unionSet;
 }
+
+vector<string> setSectionString(vector<string> firstSet, vector<string> secondSet) {
+	vector<string> section;
+	int counter = 0;
+	for (int i = 0; i < firstSet.size(); i++) 
+	{
+		for (int j = 0; j < secondSet.size(); j++) 
+		{
+			if (firstSet[i] == secondSet[j]) 
+			{
+				counter++;
+			}
+		}	
+
+		if (counter > 0)
+		{
+			section.push_back(firstSet[i]);
+		}
+		counter = 0;
+	}
+	return section;
+}
+
+
