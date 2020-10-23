@@ -69,25 +69,26 @@ vector<int> unionSetInteger(vector<int>firstSet, vector<int>secondSet) {
 	return unionSet;
 }
 
-// Do not test (still in progress)
 vector<int> sectionSetInteger(vector<int>firstSet, vector<int>secondSet) {
-	vector<int>sectionSet,tempSet;
 
+	vector<int>section;
+	int counter=0;
 	for (int i = 0; i < firstSet.size(); i++)
 	{
-		if (!vectorIntFind(secondSet, firstSet[i]))
+		for (int x = 0; x < secondSet.size(); x++)
 		{
-			tempSet.push_back(firstSet[i]);
+			if (firstSet[i]==secondSet[x])
+			{
+				counter++;
+			}
 		}
-	}
-	for (int i = 0; i < secondSet.size(); i++)
-	{
-		if (!vectorIntFind(tempSet, secondSet[i]))
+		if (counter>0)
 		{
-			tempSet.push_back(secondSet[i]);
+			section.push_back(firstSet[i]);
 		}
+		counter = 0;
 	}
-	return sectionSet;
+	return section;
 }
 
 // Function returns all elements from firstSet that aren't present in secondSet
