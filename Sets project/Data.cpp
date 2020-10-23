@@ -180,4 +180,17 @@ vector<string> setSectionString(vector<string> firstSet, vector<string> secondSe
 	return section;
 }
 
+vector<string> differenceSetString(vector<string> firstSet, vector<string> secondSet) {
+	vector<string> differenceSet; 
+
+	for (int i = 0; i < firstSet.size(); i++) {
+		if (!findStringVector(differenceSet, firstSet[i])) 
+		{
+			differenceSet.push_back(firstSet[i]);
+		}
+	}
+	return differenceSet;
+}
+
+
 
