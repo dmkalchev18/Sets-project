@@ -1,5 +1,6 @@
 #include "Data.h"
 
+// Function takes input from user which is then added into a set
 void inputSetInteger(int firstCounter, int secondCounter) {
 	vector<int>intFirstSet;
 	int input;
@@ -69,6 +70,7 @@ vector<int> unionSetInteger(vector<int>firstSet, vector<int>secondSet) {
 	return unionSet;
 }
 
+// Function returns all common elements between two sets in a new set
 vector<int> sectionSetInteger(vector<int>firstSet, vector<int>secondSet) {
 
 	vector<int>section;
@@ -77,11 +79,14 @@ vector<int> sectionSetInteger(vector<int>firstSet, vector<int>secondSet) {
 	{
 		for (int x = 0; x < secondSet.size(); x++)
 		{
+			// If an element from firstSet equals any element from secondSet, the counter will increment
 			if (firstSet[i]==secondSet[x])
 			{
 				counter++;
 			}
 		}
+
+		// If the counter is a value bigger than 0, the element from firstSet equal to an element from secondSet will be added to the new set
 		if (counter>0)
 		{
 			section.push_back(firstSet[i]);

@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
 	greetings();
-	while (showMenu()) {};
+	while (showMenu());
 	goodbyeMessage();
 	/*InputSetInteger();*/
 }
