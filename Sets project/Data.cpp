@@ -1,16 +1,19 @@
 #include "Data.h"
+#include <string>
+
+
 
 // Function takes input from user which is then added into a set
-void inputSetInteger(int firstCounter, int secondCounter) {
+vector <int> inputSetInteger(int counter) {
 	vector<int>intFirstSet;
 	int input;
 
-	for (int i = 0; i < firstCounter; i++)
+	for (int i = 0; i < counter; i++)
 	{
 		cin >> input;
 		intFirstSet.push_back(input);
 	}
-
+	return intFirstSet;
 }
 
 bool vectorIntFind(vector<int>set, int num) {
@@ -196,6 +199,3 @@ vector<string> differenceSetString(vector<string> firstSet, vector<string> secon
 	}
 	return differenceSet;
 }
-
-
-

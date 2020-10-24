@@ -7,9 +7,10 @@ using namespace std;
 
 int main()
 {
+	system("color 0b");
 	greetings();
 	while (showMenu());
 	goodbyeMessage();
-	/*InputSetInteger();*/
+	
 }
 

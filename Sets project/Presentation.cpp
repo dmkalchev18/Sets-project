@@ -2,6 +2,13 @@
 #include "Data.h"
 #include <string>
 
+
+
+void border() {
+	for (int i = 0; i < 120; i++) {
+		cout << char(177);
+	}
+}
 void greetings() {
 	cout << "\t\t\t\t\t\t  Hello User,\n";
 	cout << "\n\t\t   Welcome to the <program_name> !!! ";
@@ -12,38 +19,74 @@ void goodbyeMessage() {
 	cout << "\n\n\nThank you for using <program_name>!!!\n";
 	cout << "Copyright (c) 2020 Technical Knockout\n";
 }
-bool showMenu() {
-	int userInput;
-	for (int i = 0; i < 120; i++) {
-		cout << char(177);
-	}
-	
-	cout << endl;
-	cout << "\t1. Enter a set of numbers" << endl;
-	cout << "\t2. Show the sets" << endl;
-	cout << "\t3. Show the subset"<< endl;
-	cout << "\t4. Show the union" << endl;
-	cout << "\t5. Show the section" << endl;
-	cout << "\t6. Show the difference" << endl;
-	cout << "\t7. Exit" << endl;
 
-	for (int i = 0; i < 120; i++) {
-		cout << char(177);
-	}
-	cout << "Enter your choice by pressing a number and press ENTER!!!\n";
+void setInputInt() {
+	int userInput;
+	border();
+	border();
+	cout << "\n\n\t\t\t\t\t\t  Sets input integer numbers\n";
+	cout << "Enter how many numbers you want in your first set: ";
+	cin >> userInput;
+
+	cout << "\n\nEnter the numbers: ";
+	//firstSetInt = inputSetInteger(userInput);
+
+	cout << "\n\nEnter how many numbers you want in your second set: ";
+	cin >> userInput;
+
+	cout << "\n\nEnter the numbers: ";
+	//secondSetInt = inputSetInteger(userInput);
+
+}
+
+void showSetsFromWordsMenu() {
+	system("cls");
+	int userInput;
+	cout << "\n1. Enter sets\n";
+	cout << "2. Display the entered sets\n";
+	cout << "3. Display the subsets\n";
+	cout << "4. Display the unions\n";
+	cout << "5. Display the section\n";
+	cout << "6. Display the difference\n";
+	cout << "Enter your choice: ";
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:break;
+	case 1:setInputInt(); break;
 	case 2:break;
 	case 3:break;
 	case 4:break;
 	case 5:break;
 	case 6:break;
-	case 7:return false; break;
+	default:cout << "Incorrect input!!! Try again!\n\n";
+		break;
+	}
+}
+
+bool showMenu() {
+	int userInput;
+
+	border();
+
+	cout << "\n\t\t\t\t\t\t  Main Menu:\n";
+	cout << "\t\t\t1. Sets from numbers\n";
+	cout << "\t\t\t2. Sets from words\n";
+	cout << "\t\t\t3. Sets from letters\n";
+	cout << "\t\t\t4. Exit\n";
+
+	border();
+
+	cout << "\n\nEnter your choice: ";
+	cin >> userInput;
+	switch (userInput)
+	{
+	case 1:showSetsFromWordsMenu(); break;
+	case 2:break;
+	case 3:break;
+	case 4:return false; break;
 	default:cout << "Incorrect input!!! Please try again!\n"; return false;
 		break;
 	}
 	return true;
-	
+
 }
