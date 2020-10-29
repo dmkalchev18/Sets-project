@@ -1,5 +1,6 @@
 #include "Presentation.h"
 #include "Data.h"
+#include "Struct.h"
 #include <string>
 #include <vector>
 
@@ -30,13 +31,13 @@ void setInputInt(vector<int>& firstSetInt, vector<int>& secondSetInt) {
 	cin >> userInput;
 
 	cout << "\n\nEnter the numbers: ";
-	inputSetInteger(userInput, firstSetInt);
+	intStruct.firstSet = inputSetInteger(userInput);
 
 	cout << "\n\nEnter how many numbers you want in your second set: ";
 	cin >> userInput;
 
 	cout << "\n\nEnter the numbers: ";
-	inputSetInteger(userInput, secondSetInt);
+	intStruct.secondSet = inputSetInteger(userInput);
 
 }
 
@@ -53,7 +54,7 @@ void showSetsFromWordsMenu(vector<int>& firstSetInt, vector<int>& secondSetInt) 
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:setInputInt(firstSetInt, secondSetInt); break;
+	case 1:setInputInt(firstSetInt, secondSetInt); fillStructInt(); break;
 	case 2:break;
 	case 3:break;
 	case 4:break;

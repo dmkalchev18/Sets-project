@@ -1,19 +1,30 @@
 #include "Data.h"
+#include "Struct.h"
 #include <string>
 #include <vector>
-
+#include <fstream>
 
 
 // Function takes input from user which is then added into a set
-void inputSetInteger(int counter,vector <int>& intFirstSet) {
-	
+vector<int> inputSetInteger(int counter) {
+	vector<int>intSet;
 	int input;
 
 	for (int i = 0; i < counter; i++)
 	{
 		cin >> input;
-		intFirstSet.push_back(input);
+		intSet.push_back(input);
 	}
+	return intSet;
+}
+
+void fillStructInt() {
+	intStruct.firstDiff = differenceSetInteger(intStruct.firstSet, intStruct.secondSet);
+	intStruct.secondDiff = differenceSetInteger(intStruct.secondSet, intStruct.firstSet);
+	intStruct.section = sectionSetInteger();
+	intStruct.unionSet = unionSetInteger();
+	intStruct.firstIsSub = subSetInteger(intStruct.firstSet, intStruct.secondSet);
+	intStruct.firstIsSub = subSetInteger(intStruct.secondSet, intStruct.firstSet);
 }
 
 bool vectorIntFind(vector<int>set, int num) {
@@ -29,22 +40,22 @@ bool vectorIntFind(vector<int>set, int num) {
 }
 
 // Function checks if firstSet is a subset of secondSet
-bool subSetInteger(vector<int>firstSet, vector<int>secondSet) { 
+bool subSetInteger(vector<int>firstSet, vector<int>secondSet) {
 	int counter = 0;
 
-	for (int i = 0; i < firstSet.size(); i++)
+	for (int i = 0; i <firstSet.size(); i++)
 	{
 		for (int j = 0; j < secondSet.size(); j++)
 		{
 			// Check if an element from firstSet is equal to any elements within secondSet
-			if (firstSet[i] == secondSet[j]) 
+			if (firstSet[i] == secondSet[j])
 			{
 				counter++;
 			}
 		}
 	}
 	// If all elements in firstSet exist within secondSet, the counter will equal the size of firstSet
-	if (counter == firstSet.size()) 
+	if (counter == firstSet.size())
 	{
 		return true;
 	}
@@ -55,35 +66,35 @@ bool subSetInteger(vector<int>firstSet, vector<int>secondSet) {
 }
 
 // Function combines firstSet and secondSet into one set
-vector<int> unionSetInteger(vector<int>firstSet, vector<int>secondSet) { 
+vector<int> unionSetInteger() { 
 	vector<int>unionSet;
-	for (int i = 0; i < firstSet.size(); i++) 
+	for (int i = 0; i < intStruct.firstSet.size(); i++)
 	{
 		// Add all elements from firstSet to unionSet
-		unionSet.push_back(firstSet[i]); 
+		unionSet.push_back(intStruct.firstSet[i]);
 	}
-	for (int i = 0; i < secondSet.size(); i++)
+	for (int i = 0; i < intStruct.secondSet.size(); i++)
 	{
 		// Add all elements from secondSet that aren't already present in unionSet
-		if (!vectorIntFind(unionSet, secondSet[i])) 
+		if (!vectorIntFind(unionSet, intStruct.secondSet[i]))
 		{
-			unionSet.push_back(secondSet[i]);
+			unionSet.push_back(intStruct.secondSet[i]);
 		}
 	}
 	return unionSet;
 }
 
 // Function returns all common elements between two sets in a new set
-vector<int> sectionSetInteger(vector<int>firstSet, vector<int>secondSet) {
+vector<int> sectionSetInteger() {
 
 	vector<int>section;
 	int counter=0;
-	for (int i = 0; i < firstSet.size(); i++)
+	for (int i = 0; i < intStruct.firstSet.size(); i++)
 	{
-		for (int x = 0; x < secondSet.size(); x++)
+		for (int x = 0; x < intStruct.secondSet.size(); x++)
 		{
 			// If an element from firstSet equals any element from secondSet, the counter will increment
-			if (firstSet[i]==secondSet[x])
+			if (intStruct.firstSet[i]== intStruct.secondSet[x])
 			{
 				counter++;
 			}
@@ -92,7 +103,7 @@ vector<int> sectionSetInteger(vector<int>firstSet, vector<int>secondSet) {
 		// If the counter is a value bigger than 0, the element from firstSet equal to an element from secondSet will be added to the new set
 		if (counter>0)
 		{
-			section.push_back(firstSet[i]);
+			section.push_back(intStruct.firstSet[i]);
 		}
 		counter = 0;
 	}
@@ -152,7 +163,7 @@ bool subSetString(vector<string> firstSet, vector<string> secondSet) {
 	return false;
 }
 
-vector<string> unionSetIntiger(vector<string> firstSet, vector<string> secondSet) {
+vector<string> unionSetString(vector<string> firstSet, vector<string> secondSet) {
 	vector<string> unionSet;
 	for (int i = 0; i < firstSet.size(); i++) {
 		unionSet.push_back(firstSet[i]);
@@ -198,4 +209,15 @@ vector<string> differenceSetString(vector<string> firstSet, vector<string> secon
 		}
 	}
 	return differenceSet;
+}
+
+//-------------------------------------------------------
+
+void addSetToHistory() {
+	ofstream myFile("history.txt", ios::app);
+	if (myFile.is_open())
+	{
+		cout<<
+	}
+	myFile.close();
 }
