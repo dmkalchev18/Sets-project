@@ -5,15 +5,7 @@
 
 using namespace std;
 
-vector<int> firstSetInt;
-
-vector<int> secondSetInt;
-
-vector<string> firstSetStr;
-
-vector<string> secondSetStr;
-
-vector<int> inputSetInteger(int counter);
+void inputSetInteger(int counter, vector <int>& intFirstSet);
 
 bool vectorIntFind(vector<int>set, int num);
 

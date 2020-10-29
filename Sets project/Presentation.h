@@ -10,6 +10,6 @@ using namespace std;
 void border();
 void greetings();
 void goodbyeMessage();
-void setInputInt();
-void setInput();
+void setInputInt(vector<int>& firstSetInt, vector<int>& secondSetInt);
+void showSetsFromWordsMenu(vector<int>& firstSetInt,vector<int>& secondSetInt);
 bool showMenu();

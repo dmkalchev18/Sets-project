@@ -1,6 +1,7 @@
 #include "Presentation.h"
 #include "Data.h"
 #include <string>
+#include <vector>
 
 
 
@@ -20,7 +21,7 @@ void goodbyeMessage() {
 	cout << "Copyright (c) 2020 Technical Knockout\n";
 }
 
-void setInputInt() {
+void setInputInt(vector<int>& firstSetInt, vector<int>& secondSetInt) {
 	int userInput;
 	border();
 	border();
@@ -29,17 +30,17 @@ void setInputInt() {
 	cin >> userInput;
 
 	cout << "\n\nEnter the numbers: ";
-	//firstSetInt = inputSetInteger(userInput);
+	inputSetInteger(userInput, firstSetInt);
 
 	cout << "\n\nEnter how many numbers you want in your second set: ";
 	cin >> userInput;
 
 	cout << "\n\nEnter the numbers: ";
-	//secondSetInt = inputSetInteger(userInput);
+	inputSetInteger(userInput, secondSetInt);
 
 }
 
-void showSetsFromWordsMenu() {
+void showSetsFromWordsMenu(vector<int>& firstSetInt, vector<int>& secondSetInt) {
 	system("cls");
 	int userInput;
 	cout << "\n1. Enter sets\n";
@@ -52,7 +53,7 @@ void showSetsFromWordsMenu() {
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:setInputInt(); break;
+	case 1:setInputInt(firstSetInt, secondSetInt); break;
 	case 2:break;
 	case 3:break;
 	case 4:break;
@@ -64,6 +65,14 @@ void showSetsFromWordsMenu() {
 }
 
 bool showMenu() {
+	vector<int> firstSetInt;
+
+	vector<int> secondSetInt;
+
+	vector<string> firstSetStr;
+
+	vector<string> secondSetStr;
+
 	int userInput;
 
 	border();
@@ -80,7 +89,7 @@ bool showMenu() {
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:showSetsFromWordsMenu(); break;
+	case 1:showSetsFromWordsMenu(firstSetInt,secondSetInt); break;
 	case 2:break;
 	case 3:break;
 	case 4:return false; break;

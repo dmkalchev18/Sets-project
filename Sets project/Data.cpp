@@ -1,11 +1,12 @@
 #include "Data.h"
 #include <string>
+#include <vector>
 
 
 
 // Function takes input from user which is then added into a set
-vector <int> inputSetInteger(int counter) {
-	vector<int>intFirstSet;
+void inputSetInteger(int counter,vector <int>& intFirstSet) {
+	
 	int input;
 
 	for (int i = 0; i < counter; i++)
@@ -13,7 +14,6 @@ vector <int> inputSetInteger(int counter) {
 		cin >> input;
 		intFirstSet.push_back(input);
 	}
-	return intFirstSet;
 }
 
 bool vectorIntFind(vector<int>set, int num) {
