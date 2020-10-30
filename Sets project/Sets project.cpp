@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	
+	backup();
 	system("color 0b");
 	greetings();
 	while (showMenu());

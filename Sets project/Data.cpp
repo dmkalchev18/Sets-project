@@ -1,10 +1,7 @@
 #include "Data.h"
-#include "Struct.h"
-#include <string>
-#include <vector>
-#include <fstream>
 
 
+SETINT intStructure;
 // Function takes input from user which is then added into a set
 vector<int> inputSetInteger(int counter) {
 	vector<int>intSet;
@@ -19,19 +16,19 @@ vector<int> inputSetInteger(int counter) {
 }
 
 void fillStructInt() {
-	intStruct.firstDiff = differenceSetInteger(intStruct.firstSet, intStruct.secondSet);
-	intStruct.secondDiff = differenceSetInteger(intStruct.secondSet, intStruct.firstSet);
-	intStruct.section = sectionSetInteger();
-	intStruct.unionSet = unionSetInteger();
-	intStruct.firstIsSub = subSetInteger(intStruct.firstSet, intStruct.secondSet);
-	intStruct.firstIsSub = subSetInteger(intStruct.secondSet, intStruct.firstSet);
+	intStructure.firstDiff = differenceSetInteger(intStructure.firstSet, intStructure.secondSet);
+	intStructure.secondDiff = differenceSetInteger(intStructure.secondSet, intStructure.firstSet);
+	intStructure.section = sectionSetInteger();
+	intStructure.unionSet = unionSetInteger();
+	intStructure.firstIsSub = subSetInteger(intStructure.firstSet, intStructure.secondSet);
+	intStructure.firstIsSub = subSetInteger(intStructure.secondSet, intStructure.firstSet);
 }
 
 bool vectorIntFind(vector<int>set, int num) {
 	for (int i = 0; i < set.size(); i++)
 	{
 		// Checks if num is a part of set 
-		if (set[i] == num) 
+		if (set[i] == num)
 		{
 			return true;
 		}
@@ -43,7 +40,7 @@ bool vectorIntFind(vector<int>set, int num) {
 bool subSetInteger(vector<int>firstSet, vector<int>secondSet) {
 	int counter = 0;
 
-	for (int i = 0; i <firstSet.size(); i++)
+	for (int i = 0; i < firstSet.size(); i++)
 	{
 		for (int j = 0; j < secondSet.size(); j++)
 		{
@@ -59,26 +56,23 @@ bool subSetInteger(vector<int>firstSet, vector<int>secondSet) {
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
 }
 
 // Function combines firstSet and secondSet into one set
-vector<int> unionSetInteger() { 
+vector<int> unionSetInteger() {
 	vector<int>unionSet;
-	for (int i = 0; i < intStruct.firstSet.size(); i++)
+	for (int i = 0; i < intStructure.firstSet.size(); i++)
 	{
 		// Add all elements from firstSet to unionSet
-		unionSet.push_back(intStruct.firstSet[i]);
+		unionSet.push_back(intStructure.firstSet[i]);
 	}
-	for (int i = 0; i < intStruct.secondSet.size(); i++)
+	for (int i = 0; i < intStructure.secondSet.size(); i++)
 	{
 		// Add all elements from secondSet that aren't already present in unionSet
-		if (!vectorIntFind(unionSet, intStruct.secondSet[i]))
+		if (!vectorIntFind(unionSet, intStructure.secondSet[i]))
 		{
-			unionSet.push_back(intStruct.secondSet[i]);
+			unionSet.push_back(intStructure.secondSet[i]);
 		}
 	}
 	return unionSet;
@@ -88,22 +82,22 @@ vector<int> unionSetInteger() {
 vector<int> sectionSetInteger() {
 
 	vector<int>section;
-	int counter=0;
-	for (int i = 0; i < intStruct.firstSet.size(); i++)
+	int counter = 0;
+	for (int i = 0; i < intStructure.firstSet.size(); i++)
 	{
-		for (int x = 0; x < intStruct.secondSet.size(); x++)
+		for (int x = 0; x < intStructure.secondSet.size(); x++)
 		{
 			// If an element from firstSet equals any element from secondSet, the counter will increment
-			if (intStruct.firstSet[i]== intStruct.secondSet[x])
+			if (intStructure.firstSet[i] == intStructure.secondSet[x])
 			{
 				counter++;
 			}
 		}
 
 		// If the counter is a value bigger than 0, the element from firstSet equal to an element from secondSet will be added to the new set
-		if (counter>0)
+		if (counter > 0)
 		{
-			section.push_back(intStruct.firstSet[i]);
+			section.push_back(intStructure.firstSet[i]);
 		}
 		counter = 0;
 	}
@@ -111,12 +105,12 @@ vector<int> sectionSetInteger() {
 }
 
 // Function returns all elements from firstSet that aren't present in secondSet
-vector<int> differenceSetInteger(vector<int>firstSet, vector<int>secondSet) { 
+vector<int> differenceSetInteger(vector<int>firstSet, vector<int>secondSet) {
 	vector<int>differenceSet;
 	for (int i = 0; i < firstSet.size(); i++)
 	{
 		// Checks which elements from firstSet don't appear in secondSet
-		if (!vectorIntFind(secondSet,firstSet[i]))
+		if (!vectorIntFind(secondSet, firstSet[i]))
 		{
 			differenceSet.push_back(firstSet[i]);
 		}
@@ -136,7 +130,7 @@ vector<string> inputSetString(int counter) {
 	return stringSet;
 }
 
-bool findStringVector (vector<string> Set, string Word) {
+bool findStringVector(vector<string> Set, string Word) {
 	for (int i = 0; i < Set.size(); i++)
 	{
 		if (Set[i] == Word) {
@@ -156,7 +150,7 @@ bool subSetString(vector<string> firstSet, vector<string> secondSet) {
 			}
 		}
 	}
-	if (counter == firstSet.size()) 
+	if (counter == firstSet.size())
 	{
 		return true;
 	}
@@ -180,15 +174,15 @@ vector<string> unionSetString(vector<string> firstSet, vector<string> secondSet)
 vector<string> setSectionString(vector<string> firstSet, vector<string> secondSet) {
 	vector<string> section;
 	int counter = 0;
-	for (int i = 0; i < firstSet.size(); i++) 
+	for (int i = 0; i < firstSet.size(); i++)
 	{
-		for (int j = 0; j < secondSet.size(); j++) 
+		for (int j = 0; j < secondSet.size(); j++)
 		{
-			if (firstSet[i] == secondSet[j]) 
+			if (firstSet[i] == secondSet[j])
 			{
 				counter++;
 			}
-		}	
+		}
 
 		if (counter > 0)
 		{
@@ -200,10 +194,10 @@ vector<string> setSectionString(vector<string> firstSet, vector<string> secondSe
 }
 
 vector<string> differenceSetString(vector<string> firstSet, vector<string> secondSet) {
-	vector<string> differenceSet; 
+	vector<string> differenceSet;
 
 	for (int i = 0; i < firstSet.size(); i++) {
-		if (!findStringVector(differenceSet, firstSet[i])) 
+		if (!findStringVector(differenceSet, firstSet[i]))
 		{
 			differenceSet.push_back(firstSet[i]);
 		}
@@ -213,11 +207,18 @@ vector<string> differenceSetString(vector<string> firstSet, vector<string> secon
 
 //-------------------------------------------------------
 
-void addSetToHistory() {
-	ofstream myFile("history.txt", ios::app);
-	if (myFile.is_open())
-	{
-		cout<<
-	}
-	myFile.close();
+//void addSetToHistory() {
+//	ofstream myFile("history.txt", ios::app);
+//	if (myFile.is_open())
+//	{
+//		cout<<
+//	}
+//	myFile.close();
+//}
+
+//-------------------------------------------------------
+
+void backup() {
+	system("robocopy /E ..\\..\\Sets-project ..\\..\\Sets-project-backup-%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%-%TIME:~3,2%" );
+	system("cls");
 }

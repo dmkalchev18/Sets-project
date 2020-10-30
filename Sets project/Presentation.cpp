@@ -1,6 +1,5 @@
 #include "Presentation.h"
 #include "Data.h"
-#include "Struct.h"
 #include <string>
 #include <vector>
 
@@ -31,13 +30,13 @@ void setInputInt(vector<int>& firstSetInt, vector<int>& secondSetInt) {
 	cin >> userInput;
 
 	cout << "\n\nEnter the numbers: ";
-	intStruct.firstSet = inputSetInteger(userInput);
+	intStructure.firstSet = inputSetInteger(userInput);
 
 	cout << "\n\nEnter how many numbers you want in your second set: ";
 	cin >> userInput;
 
 	cout << "\n\nEnter the numbers: ";
-	intStruct.secondSet = inputSetInteger(userInput);
+	intStructure.secondSet = inputSetInteger(userInput);
 
 }
 

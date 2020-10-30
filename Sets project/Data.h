@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
+#include "Struct.h"
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -21,4 +23,8 @@ vector<int> differenceSetInteger(vector<int>firstSet, vector<int>secondSet);
 
 //---------------------------------------
 
-void addSetToHistory() {};
+//void addSetToHistory() {};
+
+//-----------------------------------------
+
+void backup();
