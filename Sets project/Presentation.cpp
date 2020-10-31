@@ -21,7 +21,7 @@ void goodbyeMessage() {
 	cout << "Copyright (c) 2020 Technical Knockout\n";
 }
 
-void setInputInt(vector<int>& firstSetInt, vector<int>& secondSetInt) {
+void setInputInt() {
 	int userInput;
 	border();
 	border();
@@ -40,38 +40,57 @@ void setInputInt(vector<int>& firstSetInt, vector<int>& secondSetInt) {
 
 }
 
-void showSetsFromWordsMenu(vector<int>& firstSetInt, vector<int>& secondSetInt) {
+void showSetsOfNumbers() {
+	system("cls");
+	cout << "\n First Set: ";
+	for (int i = 0; i < intStructure.firstSet.size(); i++)
+	{
+		cout << intStructure.firstSet[i] << " ";
+	}
+	cout << "\n\n Second Set: ";
+	for (int i = 0; i < intStructure.secondSet.size(); i++)
+	{
+		cout << intStructure.secondSet[i] << " ";
+	}
+	cout << "\n";
+	system("pause");
+}
+
+void showTheSubsets() {
+	system("cls");
+
+}
+
+bool showSetsFromNumbersMenu() {
 	system("cls");
 	int userInput;
+	cout << " \t\t Sets Of Numbers Menu";
 	cout << "\n1. Enter sets\n";
 	cout << "2. Display the entered sets\n";
 	cout << "3. Display the subsets\n";
 	cout << "4. Display the unions\n";
 	cout << "5. Display the section\n";
 	cout << "6. Display the difference\n";
+	cout << "7. Return to Main Menu\n";
 	cout << "Enter your choice: ";
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:setInputInt(firstSetInt, secondSetInt); fillStructInt(); break;
-	case 2:break;
-	case 3:break;
+	case 1:setInputInt(); fillStructInt(); break;
+	case 2:showSetsOfNumbers(); break;
+	case 3:showTheSubsets(); break;
 	case 4:break;
 	case 5:break;
 	case 6:break;
-	default:cout << "Incorrect input!!! Try again!\n\n";
-		break;
+	case 7:return false; break;
+	default: {cout << "Incorrect input!!! Try again!\n\n"; return false;
+		break; }
 	}
+	return true;
 }
 
 bool showMenu() {
-	vector<int> firstSetInt;
-
-	vector<int> secondSetInt;
-
-	vector<string> firstSetStr;
-
-	vector<string> secondSetStr;
+	
 
 	int userInput;
 
@@ -89,7 +108,7 @@ bool showMenu() {
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:showSetsFromWordsMenu(firstSetInt,secondSetInt); break;
+	case 1:while(showSetsFromNumbersMenu()); break;
 	case 2:break;
 	case 3:break;
 	case 4:return false; break;
