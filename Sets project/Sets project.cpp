@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
+	system("chcp 437");
 	backup();
 	system("color 0b");
 	greetings();
@@ -14,4 +15,3 @@ int main()
 	goodbyeMessage();
 	
 }
-
