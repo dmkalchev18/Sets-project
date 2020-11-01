@@ -5,7 +5,7 @@
 
 
 
-void border() {
+void displayBorder() {
 	for (int i = 0; i < 120; i++) {
 		cout << char(177);
 	}
@@ -21,79 +21,78 @@ void goodbyeMessage() {
 	cout << "Copyright (c) 2020 Technical Knockout\n";
 }
 
-//   horizontal border
 void horizontalBorder(int n) {
 	for (auto i = 0; i < n; i++) {
 		cout << char(205);
 	}
 }
 
-void upperSide(int n, bool flag = true, char m = 'd') {
-	cout << char(201); //upper side of the square    
+void printUpperSide(int n, bool isEnd = true, char indicator = 'd') {
+	cout << char(201); //upper side of the square symbol  
 	horizontalBorder(n);
-	if (flag)
+	if (isEnd)
 	{
-		cout << char(187);
+		cout << char(187);//upper right corner symbol
 		cout << endl;
 	}
 
 	else
 	{
-		if (m == 'b') {
-			cout << char(185);
+		if (indicator == 'b') {
+			cout << char(185);//T like crossroad symbol
 		}
 		else
 		{
-			cout << char(206);
+			cout << char(206);//crossroad symbol
 		}
 	}
 }
 
-void stars(int n) {
+void printStars(int n) {
 	for (auto i = 0; i < n; i++) {
 		cout << "* ";
 	}
 }
 
-void space(int n) {
+void printSpace(int n) {
 	for (int i = 0; i < n; i++) {
 		cout << "  ";
 	}
 }
 
-void downSide(int n, bool flag = true, char m = 'd') {
-	cout << char(200);//down side of the square
+void displayDownSide(int n, bool isEnd = true, char indicator = 'd') {
+	cout << char(200);//down left corner symbol
 	horizontalBorder(n);
-	if (flag) {
-		cout << char(188);
+	if (isEnd) {
+		cout << char(188);//down right corner symbol
 		cout << endl;
 	}
 	else
 	{
-		if (m == 'b') {
-			cout << char(185);
+		if (indicator == 'b') {
+			cout << char(185);//T like crossroad symbol
 		}
 		else
 		{
-			cout << char(206);
+			cout << char(206);//crossroad symbol
 		}
 
 	}
 }
 
-void sideForDifference(int n) {
+void printSideForDifference(int n) {
 	for (int i = 0; i < n; i++) {
 		cout << char(186);//barrier symbol
-		stars(10);
+		printStars(10);
 		cout << char(186);
 		cout << endl;
 	}
 }
 
-void sideForSubset(int n) {
+void printSideForSubset(int n) {
 	for (int i = 0; i < n; i++) {
 		cout << char(186);//barrier symbol
-		space(10);
+		printSpace(10);
 		cout << char(186);
 		cout << endl;
 	}
@@ -106,83 +105,83 @@ void sideForSubset(int n) {
 //s - section
 //d-difference
 //b-subset
-void side(int n, char m) {
-	switch (m) {
-	case 'u':sideForDifference(n); break;
-	case 's':sideForSubset(n); break;
-	case 'd':sideForDifference(n); break;
-	case 'b':sideForSubset(n); break;
+void displaySide(int n, char indicator) {
+	switch (indicator) {
+	case 'u':printSideForDifference(n); break;
+	case 's':printSideForSubset(n); break;
+	case 'd':printSideForDifference(n); break;
+	case 'b':printSideForSubset(n); break;
 	}
 
 }
 
-void upperSideToSideDifference(int n) {
-	upperSide(9, false);
+void printUpperSideToSideDifference(int n) {
+	printUpperSide(9, false);
 	horizontalBorder(6);
 	cout << char(187);
 }
 
-void downSideToSideDifference(int n) {
-	downSide(9, false);
+void printDownSideToSideDifference(int n) {
+	displayDownSide(9, false);
 	horizontalBorder(6);
 	cout << char(188);
 }
-void middleSideToSideDifference(char m = 'd') {
-	cout << char(186);
-	if (m == 's') {
+void printMiddleSideToSideDifference(char indicator = 'd') {
+	cout << char(186);//border symbol
+	if (indicator == 's') {
 
-		stars(4);
+		printStars(4);
 		cout << "*";
 		cout << char(186);
-		space(3);
+		printSpace(3);
 
 	}
-	else if (m == 't') {
-		space(4);
+	else if (indicator == 't') {
+		printSpace(4);
 		cout << " ";
 		cout << char(186);
-		stars(3);
+		printStars(3);
 	}
 	else
 	{
-		space(4);
+		printSpace(4);
 		cout << " ";
 		cout << char(186);
-		space(3);
+		printSpace(3);
 	}
 }
 
-void middleSideToSideSubset(char m = 'u') {
-	if (m == 'u') {
-		stars(5);
+void printMiddleSideToSideSubset(char indicator = 'u') {
+	if (indicator == 'u') {
+		printStars(5);
 	}
 	else
 	{
-		space(5);
+		printSpace(5);
 	}
 
 	cout << char(186);
-	stars(4);
+	printStars(4);
 	cout << "*";
-	if (m == 'u') {
+	if (indicator == 'u') {
 		cout << char(186);
-		stars(3);
+		printStars(3);
 	}
 }
 
 // where the two squares meet
-void sideToSide(int n, char m) {
+void showSideToSide(int n, char m) {
 
 	for (int i = 0; i < n; i++) {
 		cout << char(186);
 
 		if (i == 0) {//printing the upper side of the small square
 			switch (m) {
-			case 'u':stars(5); upperSideToSideDifference(n); break;
-			case 's':space(5); upperSideToSideDifference(n); break;
-			case 'd':stars(5); upperSideToSideDifference(n); break;
-			case 'b':space(5); upperSide(9, false, 'b'); break;
-			case 't':stars(5); upperSideToSideDifference(n); break;
+			case 'u':printStars(5); printUpperSideToSideDifference(n); break;
+			case 's':printSpace(5); printUpperSideToSideDifference(n); break;
+			case 'd':printStars(5); printUpperSideToSideDifference(n); break;
+			case 'b':printSpace(5); printUpperSide(9, false, 'b'); break;
+			case 't':printStars(5); printUpperSideToSideDifference(n); break;
 			}
 
 		}
@@ -190,22 +189,22 @@ void sideToSide(int n, char m) {
 
 
 			switch (m) {
-			case 'u':stars(5); downSideToSideDifference(n); break;
-			case 's':space(5); downSideToSideDifference(n); break;
-			case 'd':stars(5); downSideToSideDifference(n); break;
-			case 'b':space(5); downSide(9, false, 'b'); break;
-			case 't':stars(5); downSideToSideDifference(n); break;
+			case 'u':printStars(5); printDownSideToSideDifference(n); break;
+			case 's':printSpace(5); printDownSideToSideDifference(n); break;
+			case 'd':printStars(5); printDownSideToSideDifference(n); break;
+			case 'b':printSpace(5); displayDownSide(9, false, 'b'); break;
+			case 't':printStars(5); printDownSideToSideDifference(n); break;
 			}
 		}
 		else {//printing the other two sides 
 
 
 			switch (m) {
-			case 'u': middleSideToSideSubset('u'); break;
-			case 's':space(5); middleSideToSideDifference('s'); break;
-			case 'd':stars(5); middleSideToSideDifference(); break;
-			case 'b':middleSideToSideSubset('b'); break;
-			case 't':stars(5); middleSideToSideDifference('t'); break;
+			case 'u': printMiddleSideToSideSubset('u'); break;
+			case 's':printSpace(5); printMiddleSideToSideDifference('s'); break;
+			case 'd':printStars(5); printMiddleSideToSideDifference(); break;
+			case 'b':printMiddleSideToSideSubset('b'); break;
+			case 't':printStars(5); printMiddleSideToSideDifference('t'); break;
 			}
 			cout << char(186);
 		}
@@ -216,47 +215,47 @@ void sideToSide(int n, char m) {
 
 }
 
-void difference() {
-	upperSide(20);
-	side(1, 'd');
-	sideToSide(8, 'd');
-	side(1, 'd');
-	downSide(20);
+void displayDifference() {
+	printUpperSide(20);
+	displaySide(1, 'd');
+	showSideToSide(8, 'd');
+	displaySide(1, 'd');
+	displayDownSide(20);
 }
 
 
-void subset() {
-	upperSide(20);
-	side(1, 'b');
-	sideToSide(8, 'b');
-	downSide(20);
+void displaySubset() {
+	printUpperSide(20);
+	displaySide(1, 'b');
+	showSideToSide(8, 'b');
+	displayDownSide(20);
 }
 
-void section() {
-	upperSide(20);
-	side(1, 's');
-	sideToSide(8, 's');
-	downSide(20);
+void displaySection() {
+	printUpperSide(20);
+	displaySide(1, 's');
+	showSideToSide(8, 's');
+	displayDownSide(20);
 }
 
-void Union() {
-	upperSide(20);
-	side(1, 'u');
-	sideToSide(8, 'u');
-	downSide(20);
+void displayUnion() {
+	printUpperSide(20);
+	displaySide(1, 'u');
+	showSideToSide(8, 'u');
+	displayDownSide(20);
 }
 
-void simetricDifference() {
-	upperSide(20);
-	side(1, 'd');
-	sideToSide(8, 't');
-	downSide(20);
+void displaySimetricDifference() {
+	printUpperSide(20);
+	displaySide(1, 'd');
+	showSideToSide(8, 't');
+	displayDownSide(20);
 }
 
 void setInputInt() {
 	int userInput;
-	border();
-	border();
+	displayBorder();
+	displayBorder();
 	cout << "\n\n\t\t\t\t\t\t  Sets input integer numbers\n";
 	cout << "Enter how many numbers you want in your first set: ";
 	cin >> userInput;
@@ -290,31 +289,31 @@ void showSetsOfNumbers() {
 
 void showTheSubsets() {
 	system("cls");
-	subset();
+	displaySubset();
 	system("pause");
 }
 
 void showTheUnion() {
 	system("cls");
-	Union();
+	displayUnion();
 	system("pause");
 }
 
 void showTheSections() {
 	system("cls");
-	section();
+	displaySection();
 	system("pause");
 }
 
 void showTheDifference() {
 	system("cls");
-	difference();
+	displayDifference();
 	system("pause");
 }
 
 void showTheSimetricDifference() {
 	system("cls");
-	simetricDifference();
+	displaySimetricDifference();
 	system("pause");
 }
 
@@ -353,7 +352,7 @@ bool showMenu() {
 
 	int userInput;
 
-	border();
+	displayBorder();
 
 	cout << "\n\n\t\t\t\t\t\t  Main Menu:\n";
 	cout << "\t\t\t1. Sets from numbers\n";
@@ -361,7 +360,7 @@ bool showMenu() {
 	cout << "\t\t\t3. Sets from letters\n";
 	cout << "\t\t\t4. Exit\n";
 
-	border();
+	displayBorder();
 
 	cout << "\n\nEnter your choice: ";
 	cin >> userInput;
