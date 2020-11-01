@@ -1,6 +1,7 @@
 #include "Presentation.h"
 #include "Data.h"
 #include <string>
+#include<Windows.h>
 #include <vector>
 
 
@@ -215,7 +216,7 @@ void showSideToSide(int n, char m) {
 
 }
 
-void displayDifference() {
+void displayDifferenceFigure() {
 	printUpperSide(20);
 	displaySide(1, 'd');
 	showSideToSide(8, 'd');
@@ -224,28 +225,28 @@ void displayDifference() {
 }
 
 
-void displaySubset() {
+void displaySubsetFigure() {
 	printUpperSide(20);
 	displaySide(1, 'b');
 	showSideToSide(8, 'b');
 	displayDownSide(20);
 }
 
-void displaySection() {
+void displaySectionFigure() {
 	printUpperSide(20);
 	displaySide(1, 's');
 	showSideToSide(8, 's');
 	displayDownSide(20);
 }
 
-void displayUnion() {
+void displayUnionFigure() {
 	printUpperSide(20);
 	displaySide(1, 'u');
 	showSideToSide(8, 'u');
 	displayDownSide(20);
 }
 
-void displaySimetricDifference() {
+void displaySimetricDifferenceFigure() {
 	printUpperSide(20);
 	displaySide(1, 'd');
 	showSideToSide(8, 't');
@@ -271,49 +272,97 @@ void setInputInt() {
 
 }
 
+bool areTheVectorsFull() {
+	if (intStructure.firstSet.size() == 0 ) {
+		return false;
+	}
+	return true;
+}
+
 void showSetsOfNumbers() {
 	system("cls");
-	cout << "\n First Set: ";
-	for (int i = 0; i < intStructure.firstSet.size(); i++)
-	{
-		cout << intStructure.firstSet[i] << " ";
+	if (areTheVectorsFull()) {
+		cout << "\n First Set: ";
+		for (int i = 0; i < intStructure.firstSet.size(); i++)
+		{
+			cout << intStructure.firstSet[i] << " ";
+		}
+		cout << "\n\n Second Set: ";
+		for (int i = 0; i < intStructure.secondSet.size(); i++)
+		{
+			cout << intStructure.secondSet[i] << " ";
+		}
+		cout << "\n";
 	}
-	cout << "\n\n Second Set: ";
-	for (int i = 0; i < intStructure.secondSet.size(); i++)
+	else
 	{
-		cout << intStructure.secondSet[i] << " ";
+		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-	cout << "\n";
 	system("pause");
 }
 
 void showTheSubsets() {
 	system("cls");
-	displaySubset();
+	if (areTheVectorsFull()) {
+		displaySubsetFigure();
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
+	}
+	
 	system("pause");
 }
 
 void showTheUnion() {
 	system("cls");
-	displayUnion();
+	if (areTheVectorsFull()) {
+		displayUnionFigure();
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
+	}
+	
 	system("pause");
 }
 
 void showTheSections() {
 	system("cls");
-	displaySection();
+	if (areTheVectorsFull()) {
+		displaySectionFigure();
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
+	}
+	
 	system("pause");
 }
 
 void showTheDifference() {
 	system("cls");
-	displayDifference();
+	if (areTheVectorsFull()) {
+		displayDifferenceFigure();
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
+	}
+	
 	system("pause");
 }
 
 void showTheSimetricDifference() {
 	system("cls");
-	displaySimetricDifference();
+	if (areTheVectorsFull()) {
+		displaySimetricDifferenceFigure();
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
+	}
+	
 	system("pause");
 }
 

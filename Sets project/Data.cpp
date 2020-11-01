@@ -1,5 +1,5 @@
 #include "Data.h"
-
+#include<Windows.h>
 
 SETINT intStructure;
 // Function takes input from user which is then added into a set
@@ -21,7 +21,7 @@ void fillStructInt() {
 	intStructure.section = sectionSetInteger();
 	intStructure.unionSet = unionSetInteger();
 	intStructure.firstIsSub = subSetInteger(intStructure.firstSet, intStructure.secondSet);
-	intStructure.firstIsSub = subSetInteger(intStructure.secondSet, intStructure.firstSet);
+	intStructure.secondIsSub = subSetInteger(intStructure.secondSet, intStructure.firstSet);
 }
 
 bool vectorIntFind(vector<int>set, int num) {
@@ -203,6 +203,12 @@ vector<string> differenceSetString(vector<string> firstSet, vector<string> secon
 		}
 	}
 	return differenceSet;
+}
+
+void gotoxy(int x, int y) {
+	COORD pos = { x, y - 1 };
+	HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleCursorPosition(output, pos);
 }
 
 //-------------------------------------------------------
