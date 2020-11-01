@@ -382,7 +382,7 @@ bool showSetsFromNumbersMenu() {
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:setInputInt(); fillStructInt(); break;
+	case 1:setInputInt(); fillStructInt(); addSetToHistory(); break;
 	case 2:showSetsOfNumbers(); break;
 	case 3:showTheSubsets(); break;
 	case 4:showTheUnion(); break;

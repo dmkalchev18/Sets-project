@@ -23,8 +23,15 @@ vector<int> sectionSetInteger();
 vector<int> differenceSetInteger(vector<int>firstSet, vector<int>secondSet);
 void gotoxy(int x, int y);
 //---------------------------------------
+int tokenize(string line, string* results, char delimiter);
 
-//void addSetToHistory() {};
+void addSetToHistory();
+
+string vectorToStringFile(vector<int>vector, char delimiter);
+
+int getID(int option);
+
+void updateID(int option);
 
 //-----------------------------------------
 

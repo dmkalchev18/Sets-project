@@ -213,14 +213,106 @@ void gotoxy(int x, int y) {
 
 //-------------------------------------------------------
 
-//void addSetToHistory() {
-//	ofstream myFile("history.txt", ios::app);
-//	if (myFile.is_open())
-//	{
-//		cout<<
-//	}
-//	myFile.close();
-//}
+int tokenize(string line, string* results, char delimiter) {
+	string tmp;
+	int counter = 0, count = 0;
+	for (int i = 0; i < line.size(); i++)
+	{
+		if (line[i] == delimiter)
+		{
+			results[counter++] = tmp;
+			tmp = "";
+			i++;
+		}
+		tmp += line[i];
+	}
+	return counter;
+}
+
+string vectorToStringFile(vector<int>vector,char delimiter) {
+	string str;
+	for (int i = 0; i < vector.size(); i++)
+	{
+		str = str + to_string(vector[i]) + delimiter;
+	}
+	return str;
+}
+
+int getID(int option) {
+	ifstream idFile("id.txt");
+	string line,id[10];
+	if (idFile.is_open())
+	{
+		getline(idFile, line);
+		if (line !=" ")
+		{
+			tokenize(line, id, ',');
+			return stoi(id[option-1]);
+		}
+	}
+	return -1;
+}
+
+void updateID(int option) {
+	ifstream idFile("id.txt");
+	ofstream newIdFile("newId.txt");
+	string line,content[10];
+	if (idFile.is_open())
+	{
+		getline(idFile, line);
+		tokenize(line, content, ',');
+		if (newIdFile.is_open())
+		{
+			switch (option)
+			{
+			case 1:
+				newIdFile << getID(option) + 1 <<","<< getID(2)<<",";
+				break;
+			case 2:
+				newIdFile << getID(1) <<","<< getID(option)+1<<",";
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	idFile.close();
+
+	if (remove("id.txt") != 0) {
+		cerr << "A wild error appeared: ";
+	}
+	else {
+		cout << "Editing username 50% done!" << endl;
+	}
+
+	newIdFile.close();
+
+	if (rename("newId.txt", "id.txt") != 0)
+	{
+		cerr << "A wild error appeared : ";
+	}
+	else
+	{
+		cout << "Editing username done!!!!" << endl;
+	}
+}
+
+void addSetToHistory() {
+	ofstream myFile("history.txt", ios::app);
+	int id = getID(1);
+	if (myFile.is_open())
+	{
+		myFile << id << "," << vectorToStringFile(intStructure.firstSet, '|') << ","
+			<< vectorToStringFile(intStructure.secondSet, '|') << ","
+			<< vectorToStringFile(intStructure.firstDiff, '|') << ","
+			<< vectorToStringFile(intStructure.secondDiff, '|') << ","
+			<< vectorToStringFile(intStructure.section, '|') << ","
+			<< vectorToStringFile(intStructure.unionSet, '|') << ","
+			<< intStructure.firstIsSub << ","<<intStructure.secondIsSub << ","<<endl;
+	}
+	myFile.close();
+	updateID(1);
+}
 
 //-------------------------------------------------------
 
@@ -228,3 +320,8 @@ void backup() {
 	system("robocopy /E ..\\..\\Sets-project ..\\..\\Sets-project-backup-%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%-%TIME:~3,2%" );
 	system("cls");
 }
+
+//7
+//1 2 3 4 5 6 7
+//4
+//1 2 3 4
