@@ -273,7 +273,7 @@ void setInputInt() {
 }
 
 bool areTheVectorsFull() {
-	if (intStructure.firstSet.size() == 0 ) {
+	if (intStructure.firstSet.size() == 0) {
 		return false;
 	}
 	return true;
@@ -310,7 +310,7 @@ void showTheSubsets() {
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-	
+
 	system("pause");
 }
 
@@ -323,7 +323,7 @@ void showTheUnion() {
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-	
+
 	system("pause");
 }
 
@@ -336,7 +336,7 @@ void showTheSections() {
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-	
+
 	system("pause");
 }
 
@@ -349,7 +349,7 @@ void showTheDifference() {
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-	
+
 	system("pause");
 }
 
@@ -362,7 +362,7 @@ void showTheSimetricDifference() {
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-	
+
 	system("pause");
 }
 
@@ -377,18 +377,20 @@ bool showSetsFromNumbersMenu() {
 	cout << "5. Display the section\n";
 	cout << "6. Display the difference\n";
 	cout << "7. Display the simetric difference\n";
+	cout << "10. test\n";
 	cout << "8. Return to Main Menu\n";
 	cout << "Enter your choice: ";
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:setInputInt(); fillStructInt(); addSetToHistory(); break;
+	case 1:setInputInt(); fillStructInt(); addSetToHistory(); addSetToSaveFile(); break;
 	case 2:showSetsOfNumbers(); break;
 	case 3:showTheSubsets(); break;
 	case 4:showTheUnion(); break;
 	case 5:showTheSections(); break;
 	case 6:showTheDifference(); break;
 	case 7:showTheSimetricDifference(); break;
+	case 10: selectSetFromId("history", 27); break;
 	case 8:return false; break;
 	default: {cout << "Incorrect input!!! Try again!\n\n"; return false;
 		break; }
@@ -397,7 +399,7 @@ bool showSetsFromNumbersMenu() {
 }
 
 bool showMenu() {
-	
+
 
 	int userInput;
 
@@ -415,7 +417,7 @@ bool showMenu() {
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:while(showSetsFromNumbersMenu()); break;
+	case 1:while (showSetsFromNumbersMenu()); break;
 	case 2:break;
 	case 3:break;
 	case 4:return false; break;

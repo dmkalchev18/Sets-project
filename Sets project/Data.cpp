@@ -213,6 +213,55 @@ void gotoxy(int x, int y) {
 
 //-------------------------------------------------------
 
+void stringToLocalSet(string firstSet, string secondSet) {
+	vector<int>firstSetInt, secondSetInt;
+	string firstContent[60], secondContent[60];
+	int i = 0, j = 0;
+	tokenize(firstSet, firstContent, '|');
+	tokenize(secondSet, secondContent, '|');
+	while (true)
+	{
+		if (firstContent[i] != "")
+		{
+			firstSetInt.push_back(stoi(firstContent[i]));
+			i++;
+		}
+		if (secondContent[j] != "")
+		{
+			secondSetInt.push_back(stoi(secondContent[j]));
+			j++;
+		}
+		if (firstContent[i] == "" && secondContent[j] == "")
+		{
+			break;
+		}
+	}
+	intStructure.firstSet = firstSetInt;
+	intStructure.secondSet = secondSetInt;
+	fillStructInt();
+}
+
+void selectSetFromId(string fileName, int id) {
+	ifstream file(fileName + ".txt");
+	string line, content[10];
+	if (file.is_open())
+	{
+		while (!file.eof())
+		{
+			getline(file, line);
+			if (line != "")
+			{
+				tokenize(line, content, ',');
+				if (stoi(content[0]) == id)
+				{
+					stringToLocalSet(content[1], content[2]);
+				}
+			}
+		}
+	}
+	file.close();
+}
+
 int tokenize(string line, string* results, char delimiter) {
 	string tmp;
 	int counter = 0, count = 0;
@@ -229,7 +278,7 @@ int tokenize(string line, string* results, char delimiter) {
 	return counter;
 }
 
-string vectorToStringFile(vector<int>vector,char delimiter) {
+string vectorToStringFile(vector<int>vector, char delimiter) {
 	string str;
 	for (int i = 0; i < vector.size(); i++)
 	{
@@ -240,14 +289,14 @@ string vectorToStringFile(vector<int>vector,char delimiter) {
 
 int getID(int option) {
 	ifstream idFile("id.txt");
-	string line,id[10];
+	string line, id[10];
 	if (idFile.is_open())
 	{
 		getline(idFile, line);
-		if (line !=" ")
+		if (line != " ")
 		{
 			tokenize(line, id, ',');
-			return stoi(id[option-1]);
+			return stoi(id[option - 1]);
 		}
 	}
 	return -1;
@@ -256,7 +305,7 @@ int getID(int option) {
 void updateID(int option) {
 	ifstream idFile("id.txt");
 	ofstream newIdFile("newId.txt");
-	string line,content[10];
+	string line, content[10];
 	if (idFile.is_open())
 	{
 		getline(idFile, line);
@@ -266,10 +315,10 @@ void updateID(int option) {
 			switch (option)
 			{
 			case 1:
-				newIdFile << getID(option) + 1 <<","<< getID(2)<<",";
+				newIdFile << getID(option) + 1 << "," << getID(2) << ",";
 				break;
 			case 2:
-				newIdFile << getID(1) <<","<< getID(option)+1<<",";
+				newIdFile << getID(1) << "," << getID(option) + 1 << ",";
 				break;
 			default:
 				break;
@@ -297,6 +346,23 @@ void updateID(int option) {
 	}
 }
 
+void addSetToSaveFile() {
+	ofstream myFile("save.txt", ios::app);
+	int id = getID(2);
+	if (myFile.is_open())
+	{
+		myFile << id << "," << vectorToStringFile(intStructure.firstSet, '|') << ","
+			<< vectorToStringFile(intStructure.secondSet, '|') << ","
+			<< vectorToStringFile(intStructure.firstDiff, '|') << ","
+			<< vectorToStringFile(intStructure.secondDiff, '|') << ","
+			<< vectorToStringFile(intStructure.section, '|') << ","
+			<< vectorToStringFile(intStructure.unionSet, '|') << ","
+			<< intStructure.firstIsSub << "," << intStructure.secondIsSub << "," << endl;
+	}
+	myFile.close();
+	updateID(2);
+}
+
 void addSetToHistory() {
 	ofstream myFile("history.txt", ios::app);
 	int id = getID(1);
@@ -308,7 +374,7 @@ void addSetToHistory() {
 			<< vectorToStringFile(intStructure.secondDiff, '|') << ","
 			<< vectorToStringFile(intStructure.section, '|') << ","
 			<< vectorToStringFile(intStructure.unionSet, '|') << ","
-			<< intStructure.firstIsSub << ","<<intStructure.secondIsSub << ","<<endl;
+			<< intStructure.firstIsSub << "," << intStructure.secondIsSub << "," << endl;
 	}
 	myFile.close();
 	updateID(1);
@@ -317,7 +383,7 @@ void addSetToHistory() {
 //-------------------------------------------------------
 
 void backup() {
-	system("robocopy /E ..\\..\\Sets-project ..\\..\\Sets-project-backup-%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%-%TIME:~3,2%" );
+	system("robocopy /E ..\\..\\Sets-project ..\\..\\Sets-project-backup-%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%-%TIME:~3,2%");
 	system("cls");
 }
 

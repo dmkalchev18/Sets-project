@@ -33,6 +33,12 @@ int getID(int option);
 
 void updateID(int option);
 
+void addSetToSaveFile();
+
+void stringToLocalSet(string firstSet, string secondSet);
+
+void selectSetFromId(string fileName, int id);
+
 //-----------------------------------------
 
 void backup();
