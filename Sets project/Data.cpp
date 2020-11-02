@@ -293,7 +293,7 @@ int getID(int option) {
 	if (idFile.is_open())
 	{
 		getline(idFile, line);
-		if (line != " ")
+		if (line != " " and line!="")
 		{
 			tokenize(line, id, ',');
 			return stoi(id[option - 1]);

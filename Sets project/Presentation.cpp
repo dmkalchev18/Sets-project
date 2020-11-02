@@ -254,6 +254,7 @@ void displaySimetricDifferenceFigure() {
 }
 
 void setInputInt() {
+	system("cls");
 	int userInput;
 	displayBorder();
 	displayBorder();
@@ -298,6 +299,7 @@ void showSetsOfNumbers() {
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
+	cout << "\n";
 	system("pause");
 }
 
@@ -305,12 +307,31 @@ void showTheSubsets() {
 	system("cls");
 	if (areTheVectorsFull()) {
 		displaySubsetFigure();
+		if (intStructure.firstIsSub) {
+			cout << "\n\nThe first set is subset.\n\n";
+			for (int i = 0; i < intStructure.firstSet.size(); i++)
+			{
+				cout << intStructure.firstSet[i] << " ";
+			}
+		}
+		else if(intStructure.secondIsSub)
+		{
+			cout << "\n\nThe second set is subset.\n\n";
+				for (int i = 0; i < intStructure.secondSet.size(); i++)
+				{
+					cout << intStructure.secondSet[i] << " ";
+				}
+		}
+		else
+		{
+			cout << "\n\n There is no subset.\n\n";
+		}
 	}
 	else
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-
+	cout << "\n";
 	system("pause");
 }
 
@@ -318,12 +339,17 @@ void showTheUnion() {
 	system("cls");
 	if (areTheVectorsFull()) {
 		displayUnionFigure();
+		cout << "\n\n";
+		for (int i = 0; i < intStructure.unionSet.size(); i++)
+		{
+			cout << intStructure.unionSet[i] << " ";
+		}
 	}
 	else
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-
+	cout << "\n";
 	system("pause");
 }
 
@@ -331,12 +357,17 @@ void showTheSections() {
 	system("cls");
 	if (areTheVectorsFull()) {
 		displaySectionFigure();
+		cout << "\n\n";
+		for (int i = 0; i < intStructure.section.size(); i++)
+		{
+			cout << intStructure.section[i] << " ";
+		}
 	}
 	else
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-
+	cout << "\n";
 	system("pause");
 }
 
@@ -344,12 +375,22 @@ void showTheDifference() {
 	system("cls");
 	if (areTheVectorsFull()) {
 		displayDifferenceFigure();
+		cout << "\n\n The first difference: ";
+		for (int  i = 0; i < intStructure.firstDiff.size(); i++)
+		{
+			cout << intStructure.firstDiff[i] << " ";
+		}
+		cout << "\n\n the second difference: ";
+		for (int i = 0; i < intStructure.secondDiff.size(); i++)
+		{
+			cout << intStructure.secondDiff[i] << " ";
+		}
 	}
 	else
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-
+	cout << "\n";
 	system("pause");
 }
 
@@ -362,7 +403,7 @@ void showTheSimetricDifference() {
 	{
 		cout << "\n\t\t\tYou haven't entered any numbers!!! Go and type some!\n";
 	}
-
+	cout << "\n";
 	system("pause");
 }
 
@@ -377,7 +418,6 @@ bool showSetsFromNumbersMenu() {
 	cout << "5. Display the section\n";
 	cout << "6. Display the difference\n";
 	cout << "7. Display the simetric difference\n";
-	cout << "10. test\n";
 	cout << "8. Return to Main Menu\n";
 	cout << "Enter your choice: ";
 	cin >> userInput;
@@ -390,7 +430,6 @@ bool showSetsFromNumbersMenu() {
 	case 5:showTheSections(); break;
 	case 6:showTheDifference(); break;
 	case 7:showTheSimetricDifference(); break;
-	case 10: selectSetFromId("history", 27); break;
 	case 8:return false; break;
 	default: {cout << "Incorrect input!!! Try again!\n\n"; return false;
 		break; }
