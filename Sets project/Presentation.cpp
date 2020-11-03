@@ -660,8 +660,9 @@ bool isDisplayingMenu() {
 	cout << "\t\t\t1. Sets from numbers\n";
 	cout << "\t\t\t2. Sets from words\n";
 	cout << "\t\t\t3. Sets from letters\n";
-	cout << "\t\t\t4. Exit\n";
-
+	cout << "\t\t\t4. Delete a set from file by id\n";
+	cout << "\t\t\t5. Select a set from file by id\n";
+	cout << "\t\t\t6. Exit\n";
 	displayBorder();
 
 	cout << "\n\nEnter your choice: ";
@@ -671,7 +672,9 @@ bool isDisplayingMenu() {
 	case 1:while (isShowingSetsFromNumbersMenu()); break;
 	case 2:while (isShowingSetsFromWordsMenu()); break;
 	case 3:break;
-	case 4:return false; break;
+	case 4:deleteSavedSetById(); break;
+	case 5:selectSetFromId(); break;
+	case 6:return false; break;
 	default:cout << "Incorrect input!!! Please try again!\n"; return false;
 		break;
 	}
