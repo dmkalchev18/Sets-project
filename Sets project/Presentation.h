@@ -11,6 +11,7 @@ using namespace std;
 void displayBorder();
 void greetings();
 void goodbyeMessage();
+
 void horizontalBorder(int n);
 void printUpperSide(int n, bool isEnd , char indicator);
 void printStars(int n);
@@ -40,5 +41,14 @@ void showTheSimetricDifference();
 void showTheSubsets();
 void setInputInt();
 bool isShowingSetsFromNumbersMenu();
+void setInputString();
+void showSetsOfWords();
+void showTheSubsetsFromWords();
+void showTheUnionFromWords();
+void showTheSectionsFromWords();
+void showTheDifferenceFromWords();
+void showTheSimetricDifferenceFromWords();
+bool isShowingSetsFromWordsMenu();
+
 bool isDisplayingMenu();
 void showFileContent(string fileName);

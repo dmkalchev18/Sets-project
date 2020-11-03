@@ -254,7 +254,7 @@ void displaySimetricDifferenceFigure() {
 }
 
 void setInputInt() {
-	//system("cls");
+	system("cls");
 	string userInput;
 	displayBorder();
 	displayBorder();
@@ -400,7 +400,7 @@ void showTheDifference() {
 		{
 			cout << intStructure.firstDiff[i] << " ";
 		}
-		cout << "\n\n the second difference: ";
+		cout << "\n\n The second difference: ";
 		for (int i = 0; i < intStructure.secondDiff.size(); i++)
 		{
 			cout << intStructure.secondDiff[i] << " ";
@@ -418,6 +418,16 @@ void showTheSimetricDifference() {
 	system("cls");
 	if (areTheVectorsFull()) {
 		displaySimetricDifferenceFigure();
+		cout << "\n\n The symmetric difference: ";
+		for (int i = 0; i < intStructure.firstDiff.size(); i++)
+		{
+			cout << intStructure.firstDiff[i] << " ";
+		}
+		
+		for (int i = 0; i < intStructure.secondDiff.size(); i++)
+		{
+			cout << intStructure.secondDiff[i] << " ";
+		}
 	}
 	else
 	{
@@ -458,6 +468,187 @@ bool isShowingSetsFromNumbersMenu() {
 	return true;
 }
 
+
+
+
+
+void setInputString() {
+	int userInput;
+	displayBorder();
+	displayBorder();
+	cout << "\n\n\t\t\t\t\t\t  Sets input words\n";
+	cout << "Enter how many words you want in your first set: ";
+	cin >> userInput;
+	cout << "\n\nEnter the words: ";
+	stringStructure.firstSet = inputSetString(userInput);
+	
+	cout << "\n\nEnter how many words you want in your second set: ";
+	cin >> userInput;
+
+	cout << "\n\nEnter the numbers: ";
+	stringStructure.secondSet = inputSetString(userInput);
+	
+}
+
+void showSetsOfWords() {
+	system("cls");
+	cout << "\n\n\nThe first set: ";
+	for (int i = 0; i < stringStructure.firstSet.size(); i++) {
+		cout << stringStructure.firstSet[i] << " ";
+	}
+	cout << "\n\n\nThe second set: ";
+	for (int i = 0; i < stringStructure.secondSet.size(); i++) {
+		cout << stringStructure.secondSet[i] << " ";
+	}
+	system("pause");
+}
+
+void showTheSubsetsFromWords() {
+	system("cls");
+	if (areTheVectorsFull()) {
+		displaySubsetFigure();
+		if (stringStructure.firstIsSub) {
+			cout << "\n\nThe first set is subset.\n\n";
+			for (int i = 0; i < stringStructure.firstSet.size(); i++)
+			{
+				cout << stringStructure.firstSet[i] << " ";
+			}
+		}
+		else if (stringStructure.secondIsSub)
+		{
+			cout << "\n\nThe second set is subset.\n\n";
+			for (int i = 0; i < stringStructure.secondSet.size(); i++)
+			{
+				cout << stringStructure.secondSet[i] << " ";
+			}
+		}
+		else
+		{
+			cout << "\n\n There are no subset.\n\n";
+		}
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any words!!! Go and type some!\n";
+	}
+	cout << "\n";
+	system("pause");
+}
+
+void showTheUnionFromWords() {
+	system("cls");
+	if (areTheVectorsFull()) {
+		displayUnionFigure();
+		cout << "\n\n";
+		for (int i = 0; i < stringStructure.unionSet.size(); i++)
+		{
+			cout << stringStructure.unionSet[i] << " ";
+		}
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any words!!! Go and type some!\n";
+	}
+	cout << "\n";
+	system("pause");
+}
+
+void showTheSectionsFromWords() {
+	system("cls");
+	if (areTheVectorsFull()) {
+		displaySectionFigure();
+		cout << "\n\n";
+		for (int i = 0; i < stringStructure.section.size(); i++)
+		{
+			cout << stringStructure.section[i] << " ";
+		}
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any words!!! Go and type some!\n";
+	}
+	cout << "\n";
+	system("pause");
+}
+
+void showTheDifferenceFromWords() {
+	system("cls");
+	if (areTheVectorsFull()) {
+		displayDifferenceFigure();
+		cout << "\n\n The first difference: ";
+		for (int i = 0; i < stringStructure.firstDiff.size(); i++)
+		{
+			cout << stringStructure.firstDiff[i] << " ";
+		}
+		cout << "\n\n the second difference: ";
+		for (int i = 0; i < stringStructure.secondDiff.size(); i++)
+		{
+			cout << stringStructure.secondDiff[i] << " ";
+		}
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any words!!! Go and type some!\n";
+	}
+	cout << "\n";
+	system("pause");
+}
+
+void showTheSimetricDifferenceFromWords() {
+	system("cls");
+	if (areTheVectorsFull()) {
+		displaySimetricDifferenceFigure();
+		cout << "\n\n The symmetric difference: ";
+		for (int i = 0; i < stringStructure.firstDiff.size(); i++)
+		{
+			cout << stringStructure.firstDiff[i] << " ";
+		}
+
+		for (int i = 0; i < stringStructure.secondDiff.size(); i++)
+		{
+			cout << stringStructure.secondDiff[i] << " ";
+		}
+	}
+	else
+	{
+		cout << "\n\t\t\tYou haven't entered any words!!! Go and type some!\n";
+	}
+	cout << "\n";
+	system("pause");
+}
+
+bool isShowingSetsFromWordsMenu() {
+	system("cls");
+	int userInput;
+	cout << " \t\t Sets Of Words Menu";
+	cout << "\n1. Enter sets\n";
+	cout << "2. Display the entered sets\n";
+	cout << "3. Display the subsets\n";
+	cout << "4. Display the unions\n";
+	cout << "5. Display the section\n";
+	cout << "6. Display the difference\n";
+	cout << "7. Display the simetric difference\n";
+	cout << "8. Display the history\n";
+	cout << "9. Return to Main Menu\n";
+	cout << "Enter your choice: ";
+	cin >> userInput;
+	switch (userInput)
+	{
+	case 1:setInputString(); fillStructString(); addSetToHistory(); addSetToSaveFile(); break;
+	case 2:showSetsOfWords(); break;
+	case 3:showTheSubsetsFromWords(); break;
+	case 4:showTheUnionFromWords(); break;
+	case 5:showTheSectionsFromWords(); break;
+	case 6:showTheDifferenceFromWords(); break;
+	case 7:showTheSimetricDifferenceFromWords(); break;
+	case 8: showFileContent("history");
+	case 9:return false; break;
+	default: {cout << "Incorrect input!!! Try again!\n\n"; return false;
+		break; }
+	}
+	return true;
+}
+
 bool isDisplayingMenu() {
 
 
@@ -478,7 +669,7 @@ bool isDisplayingMenu() {
 	switch (userInput)
 	{
 	case 1:while (isShowingSetsFromNumbersMenu()); break;
-	case 2:break;
+	case 2:while (isShowingSetsFromWordsMenu()); break;
 	case 3:break;
 	case 4:return false; break;
 	default:cout << "Incorrect input!!! Please try again!\n"; return false;
