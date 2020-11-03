@@ -329,13 +329,26 @@ int tokenize(string line, string* results, char delimiter) {
 }
 
 // Function takes elements from a vector and turns them into a string that is ready to be stored in a file
-string vectorToStringFile(vector<int>vector, char delimiter) {
+string vectorIntToStringFile(vector<int>vector, char delimiter) {
 	string str;
 	for (int i = 0; i < vector.size(); i++)
 	{
 		str = str + to_string(vector[i]) + delimiter;
 	}
 	if (str=="")
+	{
+		str = " ";
+	}
+	return str;
+}
+
+string vectorStringToStringFile(vector<string>vector, char delimiter) {
+	string str;
+	for (int i = 0; i < vector.size(); i++)
+	{
+		str = str + vector[i] + delimiter;
+	}
+	if (str == "")
 	{
 		str = " ";
 	}
@@ -392,6 +405,56 @@ void deleteSavedSetInt(int id) {
 	}
 }
 
+void deleteSavedSetById(string fileName, int id, char delimiter) {
+	string basicFileName = fileName + ".txt", newFileName = fileName + "New.txt";
+	ifstream saveFile(basicFileName);
+	ofstream newFile(newFileName);
+	string content[10], help;
+	string line;
+
+	if (saveFile.is_open())
+	{
+		string line;
+		while (!saveFile.eof())
+		{
+			getline(saveFile, line);
+
+			if (line != "") {
+
+				tokenize(line, content, delimiter);
+				if (stoi(content[0]) == id)
+				{
+
+				}
+				else
+				{
+					newFile << content[0] << delimiter << content[1] << delimiter << content[2] << delimiter << content[3] << delimiter << content[4] << delimiter << content[5] << delimiter << content[6] << delimiter << content[7] << delimiter << content[8] << delimiter << endl;
+				}
+			}
+		}
+		newFile.close();
+		saveFile.close();
+
+
+		if (remove(basicFileName.c_str()) != 0) {
+			cout << "A wild error appeared!!!!" << endl;
+		}
+		else {
+			cout << "Deleting set 50% done" << endl;
+		}
+
+
+
+		if (rename(newFileName.c_str(), basicFileName.c_str()) != 0) {
+			cout << "A wild error appeared!!!!!" << endl;
+		}
+		else
+		{
+			cout << "Deleting set done!!!!" << endl;
+		}
+	}
+}
+
 // Function returns an ID contained within the history
 int getID(int option) {
 	ifstream idFile("id.txt");
@@ -423,10 +486,16 @@ void updateID(int option) {
 			switch (option)
 			{
 			case 1:
-				newIdFile << getID(option) + 1 << "," << getID(2) << ",";
+				newIdFile << stoi(content[0]) + 1 << "," << content[1] << "," << content[2] << "," << content[3] << ",";
 				break;
 			case 2:
-				newIdFile << getID(1) << "," << getID(option) + 1 << ",";
+				newIdFile << content[0] << "," << stoi(content[1]) + 1 << "," << content[2] << "," << content[3] << ",";
+				break;
+			case 3:
+				newIdFile << content[0] << "," << content[1] << "," << stoi(content[2]) + 1 << "," << content[3] << ",";
+				break;
+			case 4:
+				newIdFile << content[0] << "," << content[1] << "," << content[2] << "," << stoi(content[3]) + 1 << ",";
 				break;
 			default:
 				break;
@@ -439,7 +508,7 @@ void updateID(int option) {
 		cout << "A wild error appeared!!!!";
 	}
 	else {
-		
+
 	}
 
 	newIdFile.close();
@@ -453,45 +522,43 @@ void updateID(int option) {
 	}
 }
 
-// Function adds a set to a file, containing sets saved by the user
-void addSetToSaveFile() {
-	ofstream myFile("saveInt.txt", ios::app);
-	int id = getID(2);
-
-	if (myFile.is_open())
-	{
-		// All operations performed with the set are written to the save file
-		myFile << id << "," << vectorToStringFile(intStructure.firstSet, '|') << ","
-			<< vectorToStringFile(intStructure.secondSet, '|') << ","
-			<< vectorToStringFile(intStructure.firstDiff, '|') << ","
-			<< vectorToStringFile(intStructure.secondDiff, '|') << ","
-			<< vectorToStringFile(intStructure.section, '|') << ","
-			<< vectorToStringFile(intStructure.unionSet, '|') << ","
-			<< intStructure.firstIsSub << "," << intStructure.secondIsSub << "," << endl;
-	}
-	myFile.close();
-	updateID(2);
-}
-
 // Function adds a set to a file, containing all sets entered by the user
-void addSetToHistory() {
-	ofstream myFile("historyInt.txt", ios::app);
-	int id = getID(1);
+void addSetToFile(string fileName, int idOption, int type) {
+	ofstream myFile(fileName + ".txt", ios::app);
+	int id = getID(idOption);
 
-	if (myFile.is_open())
+	switch (type)
 	{
-		myFile << id << "," << vectorToStringFile(intStructure.firstSet, '|') << ","
-			<< vectorToStringFile(intStructure.secondSet, '|') << ","
-			<< vectorToStringFile(intStructure.firstDiff, '|') << ","
-			<< vectorToStringFile(intStructure.secondDiff, '|') << ","
-			<< vectorToStringFile(intStructure.section, '|') << ","
-			<< vectorToStringFile(intStructure.unionSet, '|') << ","
-			<< intStructure.firstIsSub << "," << intStructure.secondIsSub << "," << endl;
+	case 1:
+		if (myFile.is_open())
+		{
+			myFile << id << "," << vectorIntToStringFile(intStructure.firstSet, '|') << "/"
+				<< vectorIntToStringFile(intStructure.secondSet, '|') << "/"
+				<< vectorIntToStringFile(intStructure.firstDiff, '|') << "/"
+				<< vectorIntToStringFile(intStructure.secondDiff, '|') << "/"
+				<< vectorIntToStringFile(intStructure.section, '|') << "/"
+				<< vectorIntToStringFile(intStructure.unionSet, '|') << "/"
+				<< intStructure.firstIsSub << "/" << intStructure.secondIsSub << "/" << endl;
+		}
+		break;
+	case 2:
+		if (myFile.is_open())
+		{
+			myFile << id << "/" << vectorStringToStringFile(stringStructure.firstSet, '^') << "/"
+				<< vectorStringToStringFile(stringStructure.secondSet, '^') << "/"
+				<< vectorStringToStringFile(stringStructure.firstDiff, '^') << "/"
+				<< vectorStringToStringFile(stringStructure.secondDiff, '^') << "/"
+				<< vectorStringToStringFile(stringStructure.section, '^') << "/"
+				<< vectorStringToStringFile(stringStructure.unionSet, '^') << "/"
+				<< stringStructure.firstIsSub << "/" << stringStructure.secondIsSub << "/" << endl;
+		}
+		break;
+	default:
+		break;
 	}
 	myFile.close();
-	updateID(1);
+	updateID(idOption);
 }
-
 //-------------------------------------------------------
 
 // Function creates a backup of all files within the project

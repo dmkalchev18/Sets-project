@@ -43,15 +43,13 @@ vector<string> inputSetString(int counter);
 //---------------------------------------
 int tokenize(string line, string* results, char delimiter);
 
-void addSetToHistory();
+string vectorIntToStringFile(vector<int>vector, char delimiter);
 
-string vectorToStringFile(vector<int>vector, char delimiter);
+string vectorStringToStringFile(vector<string>vector, char delimiter);
 
 int getID(int option);
 
 void updateID(int option);
-
-void addSetToSaveFile();
 
 void stringToLocalSet(string firstSet, string secondSet);
 
@@ -59,7 +57,11 @@ void selectSetFromId(string fileName, int id);
 
 void deleteSavedSetInt(int id);
 
+void deleteSavedSetById(string fileName, int id, char delimiter);
+
 string fileStringToPrintString(string set, char delimiter);
+
+void addSetToFile(string fileName, int idOption, int type);
 
 //-----------------------------------------
 

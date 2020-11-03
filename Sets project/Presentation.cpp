@@ -453,7 +453,7 @@ bool isShowingSetsFromNumbersMenu() {
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:setInputInt(); fillStructInt(); addSetToHistory(); addSetToSaveFile(); break;
+	case 1:setInputInt(); fillStructInt(); addSetToFile("historyInt",1,1); break;
 	case 2:showSetsOfNumbers(); break;
 	case 3:showTheSubsets(); break;
 	case 4:showTheUnion(); break;
@@ -634,7 +634,7 @@ bool isShowingSetsFromWordsMenu() {
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:setInputString(); fillStructString(); addSetToHistory(); addSetToSaveFile(); break;
+	case 1:setInputString(); fillStructString(); addSetToFile("historyString",3,2); break;
 	case 2:showSetsOfWords(); break;
 	case 3:showTheSubsetsFromWords(); break;
 	case 4:showTheUnionFromWords(); break;
