@@ -21,6 +21,7 @@ vector<int> inputSetInteger(int counter,int charactersToIgnore) {
 	return intSet;
 }
 
+// Function validates given input
 bool checkInputInt(string str) {
 	for (int i = 0; i < str.length(); i++)
 	{
@@ -32,6 +33,7 @@ bool checkInputInt(string str) {
 	return true;
 }
 
+// Function fills a structure with data from the sets, entered by the user, alongside the operations performed with them
 void fillStructInt() {
 	intStructure.firstDiff = differenceSetInteger(intStructure.firstSet, intStructure.secondSet);
 	intStructure.secondDiff = differenceSetInteger(intStructure.secondSet, intStructure.firstSet);
@@ -41,10 +43,11 @@ void fillStructInt() {
 	intStructure.secondIsSub = subSetInteger(intStructure.secondSet, intStructure.firstSet);
 }
 
+// Searches a set for a given number
 bool vectorIntFind(vector<int>set, int num) {
 	for (int i = 0; i < set.size(); i++)
 	{
-		// Checks if num is a part of set 
+		// Checks if number is a part of set 
 		if (set[i] == num)
 		{
 			return true;
@@ -239,23 +242,32 @@ void gotoxy(int x, int y) {
 
 //-------------------------------------------------------
 
+// Function takes a formatted set from a file and transforms it into a more readable form
 string fileStringToPrintString(string set, char delimiter) {
 	string newString,content[40];
 	int i=0;
+	
+	// Formatted set is broken into pieces, split by a delimiter, which are passed onto to the "content" array 
 	tokenize(set, content, delimiter);
+
 	while (content[i]!="") {
 		newString = newString + content[i]+" ";
 		i++;
 	}
+
 	return newString;
 }
+
 
 void stringToLocalSet(string firstSet, string secondSet) {
 	vector<int>firstSetInt, secondSetInt;
 	string firstContent[60], secondContent[60];
 	int i = 0, j = 0;
+	
+
 	tokenize(firstSet, firstContent, '|');
 	tokenize(secondSet, secondContent, '|');
+	
 	while (true)
 	{
 		if (firstContent[i] != "")
@@ -299,13 +311,14 @@ void selectSetFromId(string fileName, int id) {
 	file.close();
 }
 
+// Function splits a string "line" into separate parts using given delimiter. Split parts are returned via pointer to a storage variable
 int tokenize(string line, string* results, char delimiter) {
 	string tmp;
 	int counter = 0, count = 0;
 	for (int i = 0; i < line.size(); i++)
 	{
 		if (line[i] == delimiter)
-		{
+		{ 
 			results[counter++] = tmp;
 			tmp = "";
 			i++;
@@ -315,6 +328,7 @@ int tokenize(string line, string* results, char delimiter) {
 	return counter;
 }
 
+// Function takes elements from a vector and turns them into a string that is ready to be stored in a file
 string vectorToStringFile(vector<int>vector, char delimiter) {
 	string str;
 	for (int i = 0; i < vector.size(); i++)
@@ -328,6 +342,7 @@ string vectorToStringFile(vector<int>vector, char delimiter) {
 	return str;
 }
 
+// Function deletes a saved set from the save file
 void deleteSavedSetInt(int id) {
 	ifstream saveFile("saveInt.txt");
 	ofstream newFile("newSave.txt");
@@ -377,6 +392,7 @@ void deleteSavedSetInt(int id) {
 	}
 }
 
+// Function returns an ID contained within the history
 int getID(int option) {
 	ifstream idFile("id.txt");
 	string line, id[10];
@@ -392,10 +408,12 @@ int getID(int option) {
 	return -1;
 }
 
+// Function updates an ID contained within the history
 void updateID(int option) {
 	ifstream idFile("id.txt");
 	ofstream newIdFile("newId.txt");
 	string line, content[10];
+
 	if (idFile.is_open())
 	{
 		getline(idFile, line);
@@ -435,11 +453,14 @@ void updateID(int option) {
 	}
 }
 
+// Function adds a set to a file, containing sets saved by the user
 void addSetToSaveFile() {
 	ofstream myFile("saveInt.txt", ios::app);
 	int id = getID(2);
+
 	if (myFile.is_open())
 	{
+		// All operations performed with the set are written to the save file
 		myFile << id << "," << vectorToStringFile(intStructure.firstSet, '|') << ","
 			<< vectorToStringFile(intStructure.secondSet, '|') << ","
 			<< vectorToStringFile(intStructure.firstDiff, '|') << ","
@@ -452,9 +473,11 @@ void addSetToSaveFile() {
 	updateID(2);
 }
 
+// Function adds a set to a file, containing all sets entered by the user
 void addSetToHistory() {
 	ofstream myFile("historyInt.txt", ios::app);
 	int id = getID(1);
+
 	if (myFile.is_open())
 	{
 		myFile << id << "," << vectorToStringFile(intStructure.firstSet, '|') << ","
@@ -471,6 +494,7 @@ void addSetToHistory() {
 
 //-------------------------------------------------------
 
+// Function creates a backup of all files within the project
 void backup() {
 	system("robocopy /E ..\\..\\Sets-project ..\\..\\Sets-project-backup-%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%-%TIME:~3,2%");
 	system("cls");

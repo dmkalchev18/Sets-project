@@ -13,7 +13,7 @@ int main()
 	system("cls");
 	system("color 0b");
 	greetings();
-	while (showMenu());
+	while (isDisplayingMenu());
 	goodbyeMessage();
 	
 }

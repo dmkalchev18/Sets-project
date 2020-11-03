@@ -39,6 +39,6 @@ void showTheDifference();
 void showTheSimetricDifference();
 void showTheSubsets();
 void setInputInt();
-bool showSetsFromNumbersMenu();
-bool showMenu();
+bool isShowingSetsFromNumbersMenu();
+bool isDisplayingMenu();
 void showFileContent(string fileName);

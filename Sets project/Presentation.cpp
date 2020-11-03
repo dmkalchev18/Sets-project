@@ -265,7 +265,7 @@ void setInputInt() {
 	if (!checkInputInt(userInput))
 	{
 		cout << "Invalid input. The input must be number";
-		showSetsFromNumbersMenu();
+		isShowingSetsFromNumbersMenu();
 	}
 
 	cout << "\n\nEnter the numbers: ";
@@ -273,14 +273,14 @@ void setInputInt() {
 	if (intStructure.firstSet.empty())
 	{
 		cout << "Invalid input. The input must be set of numbers";
-		showSetsFromNumbersMenu();
+		isShowingSetsFromNumbersMenu();
 	}
 	cout << "\n\nEnter how many numbers you want in your second set: ";
 	getline(cin, userInput);
 	if (!checkInputInt(userInput))
 	{
 		cout << "Invalid input. The input must be number";
-		showSetsFromNumbersMenu();
+		isShowingSetsFromNumbersMenu();
 	}
 
 	cout << "\n\nEnter the numbers: ";
@@ -288,7 +288,7 @@ void setInputInt() {
 	if (intStructure.secondSet.empty())
 	{
 		cout << "Invalid input. The input must be set of numbers";
-		showSetsFromNumbersMenu();
+		isShowingSetsFromNumbersMenu();
 	}
 
 }
@@ -344,7 +344,7 @@ void showTheSubsets() {
 		}
 		else
 		{
-			cout << "\n\n There is no subset.\n\n";
+			cout << "\n\n There are no subset.\n\n";
 		}
 	}
 	else
@@ -427,7 +427,7 @@ void showTheSimetricDifference() {
 	system("pause");
 }
 
-bool showSetsFromNumbersMenu() {
+bool isShowingSetsFromNumbersMenu() {
 	system("cls");
 	int userInput;
 	cout << " \t\t Sets Of Numbers Menu";
@@ -458,7 +458,7 @@ bool showSetsFromNumbersMenu() {
 	return true;
 }
 
-bool showMenu() {
+bool isDisplayingMenu() {
 
 
 	int userInput;
@@ -477,7 +477,7 @@ bool showMenu() {
 	cin >> userInput;
 	switch (userInput)
 	{
-	case 1:while (showSetsFromNumbersMenu()); break;
+	case 1:while (isShowingSetsFromNumbersMenu()); break;
 	case 2:break;
 	case 3:break;
 	case 4:return false; break;
@@ -488,9 +488,13 @@ bool showMenu() {
 
 }
 
+// Function displays contents of given file
 void showFileContent(string fileName) {
+	// Open file in read-mode
 	ifstream file(fileName + ".txt");
+	// "content" array contains format used by function. Reference formats.txt
 	string line, content[10];
+
 	if (file.is_open())
 	{
 		while (!file.eof())
@@ -508,6 +512,7 @@ void showFileContent(string fileName) {
 					<< "Section set: " << fileStringToPrintString(content[5], '|') << endl
 					<< "Union set: " << fileStringToPrintString(content[6], '|') << endl
 					<< "First is sub-set of the second: ";
+				// The 7th and 8th indexes of the "content" array contain information regarding the subsets of two sets thus the required check. 
 				if (content[7]=="1")
 				{
 					cout << "Yes"<<endl;
