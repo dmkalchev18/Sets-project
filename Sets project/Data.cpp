@@ -2,6 +2,7 @@
 #include<Windows.h>
 
 SETINT intStructure;
+SETSTRING stringStructure;
 // Function takes input from user which is then added into a set
 vector<int> inputSetInteger(int counter,int charactersToIgnore) {
 	vector<int>intSet;
@@ -135,6 +136,15 @@ vector<int> differenceSetInteger(vector<int>firstSet, vector<int>secondSet) {
 }
 
 // ------------------------------------------
+void fillStructString() {
+	stringStructure.firstDiff = differenceSetString(stringStructure.firstSet, stringStructure.secondSet);
+	stringStructure.secondDiff = differenceSetString(stringStructure.secondSet, stringStructure.firstSet);
+	stringStructure.section = setSectionString();
+	stringStructure.unionSet = unionSetString();
+	stringStructure.firstIsSub = subSetString(stringStructure.firstSet, stringStructure.secondSet);
+	stringStructure.secondIsSub = subSetString(stringStructure.secondSet, stringStructure.firstSet);
+}
+
 vector<string> inputSetString(int counter) {
 	vector<string> stringSet;
 	string stringVar;
@@ -173,28 +183,28 @@ bool subSetString(vector<string> firstSet, vector<string> secondSet) {
 	return false;
 }
 
-vector<string> unionSetString(vector<string> firstSet, vector<string> secondSet) {
+vector<string> unionSetString() {
 	vector<string> unionSet;
-	for (int i = 0; i < firstSet.size(); i++) {
-		unionSet.push_back(firstSet[i]);
+	for (int i = 0; i < stringStructure.firstSet.size(); i++) {
+		unionSet.push_back(stringStructure.firstSet[i]);
 	}
 
-	for (int i = 0; i < secondSet.size(); i++) {
-		if (!findStringVector(unionSet, secondSet[i])) {
-			unionSet.push_back(secondSet[i]);
+	for (int i = 0; i < stringStructure.secondSet.size(); i++) {
+		if (!findStringVector(unionSet, stringStructure.secondSet[i])) {
+			unionSet.push_back(stringStructure.secondSet[i]);
 		}
 	}
 	return unionSet;
 }
 
-vector<string> setSectionString(vector<string> firstSet, vector<string> secondSet) {
+vector<string> setSectionString() {
 	vector<string> section;
 	int counter = 0;
-	for (int i = 0; i < firstSet.size(); i++)
+	for (int i = 0; i < stringStructure.firstSet.size(); i++)
 	{
-		for (int j = 0; j < secondSet.size(); j++)
+		for (int j = 0; j < stringStructure.secondSet.size(); j++)
 		{
-			if (firstSet[i] == secondSet[j])
+			if (stringStructure.firstSet[i] == stringStructure.secondSet[j])
 			{
 				counter++;
 			}
@@ -202,7 +212,7 @@ vector<string> setSectionString(vector<string> firstSet, vector<string> secondSe
 
 		if (counter > 0)
 		{
-			section.push_back(firstSet[i]);
+			section.push_back(stringStructure.firstSet[i]);
 		}
 		counter = 0;
 	}
@@ -213,7 +223,7 @@ vector<string> differenceSetString(vector<string> firstSet, vector<string> secon
 	vector<string> differenceSet;
 
 	for (int i = 0; i < firstSet.size(); i++) {
-		if (!findStringVector(differenceSet, firstSet[i]))
+		if (!findStringVector(secondSet, firstSet[i]))
 		{
 			differenceSet.push_back(firstSet[i]);
 		}
@@ -319,7 +329,7 @@ string vectorToStringFile(vector<int>vector, char delimiter) {
 }
 
 void deleteSavedSetInt(int id) {
-	ifstream saveFile("save.txt");
+	ifstream saveFile("saveInt.txt");
 	ofstream newFile("newSave.txt");
 	string content[10], help;
 	string line;
@@ -348,7 +358,7 @@ void deleteSavedSetInt(int id) {
 		saveFile.close();
 
 		
-		if (remove("save.txt") != 0) {
+		if (remove("saveInt.txt") != 0) {
 			cout << "A wild error appeared!!!!" << endl;
 		}
 		else {
@@ -357,7 +367,7 @@ void deleteSavedSetInt(int id) {
 
 
 
-		if (rename("newSave.txt", "save.txt") != 0) {
+		if (rename("newSave.txt", "saveInt.txt") != 0) {
 			cout<< "A wild error appeared!!!!!"<< endl;
 		}
 		else
@@ -426,7 +436,7 @@ void updateID(int option) {
 }
 
 void addSetToSaveFile() {
-	ofstream myFile("save.txt", ios::app);
+	ofstream myFile("saveInt.txt", ios::app);
 	int id = getID(2);
 	if (myFile.is_open())
 	{
@@ -443,7 +453,7 @@ void addSetToSaveFile() {
 }
 
 void addSetToHistory() {
-	ofstream myFile("history.txt", ios::app);
+	ofstream myFile("historyInt.txt", ios::app);
 	int id = getID(1);
 	if (myFile.is_open())
 	{

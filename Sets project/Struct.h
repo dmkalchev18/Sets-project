@@ -9,4 +9,12 @@ struct SETINT
 	bool firstIsSub =false, secondIsSub=false;
 };
 
+struct SETSTRING
+{
+	vector<string> firstSet, secondSet;
+	vector<string> firstDiff, secondDiff, section, unionSet;
+	bool firstIsSub = false, secondIsSub = false;
+};
+
 extern SETINT intStructure;
+extern SETSTRING stringStructure;

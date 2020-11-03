@@ -25,6 +25,22 @@ vector<int> sectionSetInteger();
 vector<int> differenceSetInteger(vector<int>firstSet, vector<int>secondSet);
 void gotoxy(int x, int y);
 //---------------------------------------
+
+void fillStructString();
+
+vector<string> setSectionString();
+
+vector<string> unionSetString();
+
+vector<string> differenceSetString(vector<string> firstSet, vector<string> secondSet);
+
+bool subSetString(vector<string> firstSet, vector<string> secondSet);
+
+bool findStringVector(vector<string> Set, string Word);
+
+vector<string> inputSetString(int counter);
+
+//---------------------------------------
 int tokenize(string line, string* results, char delimiter);
 
 void addSetToHistory();
