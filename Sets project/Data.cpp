@@ -3,16 +3,32 @@
 
 SETINT intStructure;
 // Function takes input from user which is then added into a set
-vector<int> inputSetInteger(int counter) {
+vector<int> inputSetInteger(int counter,int charactersToIgnore) {
 	vector<int>intSet;
-	int input;
-
+	string input,validInput[40];
+	getline(cin, input);
+	input = input + " ";
+	if (!checkInputInt(input))
+	{
+		return intSet;
+	}
+	tokenize(input, validInput, ' ');
 	for (int i = 0; i < counter; i++)
 	{
-		cin >> input;
-		intSet.push_back(input);
+		intSet.push_back(stoi(validInput[i]));
 	}
 	return intSet;
+}
+
+bool checkInputInt(string str) {
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (!isdigit(str[i])&& str[i]!=' ')
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 void fillStructInt() {
@@ -213,6 +229,17 @@ void gotoxy(int x, int y) {
 
 //-------------------------------------------------------
 
+string fileStringToPrintString(string set, char delimiter) {
+	string newString,content[40];
+	int i=0;
+	tokenize(set, content, delimiter);
+	while (content[i]!="") {
+		newString = newString + content[i]+" ";
+		i++;
+	}
+	return newString;
+}
+
 void stringToLocalSet(string firstSet, string secondSet) {
 	vector<int>firstSetInt, secondSetInt;
 	string firstContent[60], secondContent[60];
@@ -284,7 +311,60 @@ string vectorToStringFile(vector<int>vector, char delimiter) {
 	{
 		str = str + to_string(vector[i]) + delimiter;
 	}
+	if (str=="")
+	{
+		str = " ";
+	}
 	return str;
+}
+
+void deleteSavedSetInt(int id) {
+	ifstream saveFile("save.txt");
+	ofstream newFile("newSave.txt");
+	string content[10], help;
+	string line;
+
+	if (saveFile.is_open())
+	{
+		string line;
+		while (!saveFile.eof())
+		{
+			getline(saveFile, line);
+
+			if (line != "") {
+
+				tokenize(line, content, ',');
+				if (stoi(content[0])==id)
+				{
+
+				}
+				else
+				{
+					newFile << content[0] << "," << content[1] << "," << content[2] << "," << content[3] << "," << content[4] << "," << content[5] << "," << content[6] << "," << content[7] << "," << content[8] << "," << endl;
+				}
+			}
+		}
+		newFile.close();
+		saveFile.close();
+
+		
+		if (remove("save.txt") != 0) {
+			cout << "A wild error appeared!!!!" << endl;
+		}
+		else {
+			cout << "Deleting set 50% done" << endl;
+		}
+
+
+
+		if (rename("newSave.txt", "save.txt") != 0) {
+			cout<< "A wild error appeared!!!!!"<< endl;
+		}
+		else
+		{
+			cout << "Deleting set done!!!!" << endl;
+		}
+	}
 }
 
 int getID(int option) {
@@ -328,21 +408,20 @@ void updateID(int option) {
 	idFile.close();
 
 	if (remove("id.txt") != 0) {
-		cerr << "A wild error appeared: ";
+		cout << "A wild error appeared!!!!";
 	}
 	else {
-		cout << "Editing username 50% done!" << endl;
+		
 	}
 
 	newIdFile.close();
 
 	if (rename("newId.txt", "id.txt") != 0)
 	{
-		cerr << "A wild error appeared : ";
+		cout << "A wild error appeared!!!";
 	}
 	else
 	{
-		cout << "Editing username done!!!!" << endl;
 	}
 }
 

@@ -8,7 +8,9 @@
 
 using namespace std;
 
-vector<int> inputSetInteger(int counter);
+bool checkInputInt(string str);
+
+vector<int> inputSetInteger(int counter, int charactersToIgnore);
 
 void fillStructInt();
 
@@ -38,6 +40,10 @@ void addSetToSaveFile();
 void stringToLocalSet(string firstSet, string secondSet);
 
 void selectSetFromId(string fileName, int id);
+
+void deleteSavedSetInt(int id);
+
+string fileStringToPrintString(string set, char delimiter);
 
 //-----------------------------------------
 

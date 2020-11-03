@@ -41,3 +41,4 @@ void showTheSubsets();
 void setInputInt();
 bool showSetsFromNumbersMenu();
 bool showMenu();
+void showFileContent(string fileName);

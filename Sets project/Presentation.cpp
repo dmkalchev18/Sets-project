@@ -254,22 +254,42 @@ void displaySimetricDifferenceFigure() {
 }
 
 void setInputInt() {
-	system("cls");
-	int userInput;
+	//system("cls");
+	string userInput;
 	displayBorder();
 	displayBorder();
 	cout << "\n\n\t\t\t\t\t\t  Sets input integer numbers\n";
 	cout << "Enter how many numbers you want in your first set: ";
-	cin >> userInput;
+	cin.ignore(52, '\n');
+	getline(cin, userInput);
+	if (!checkInputInt(userInput))
+	{
+		cout << "Invalid input. The input must be number";
+		showSetsFromNumbersMenu();
+	}
 
 	cout << "\n\nEnter the numbers: ";
-	intStructure.firstSet = inputSetInteger(userInput);
-
+	intStructure.firstSet = inputSetInteger(stoi(userInput),20);
+	if (intStructure.firstSet.empty())
+	{
+		cout << "Invalid input. The input must be set of numbers";
+		showSetsFromNumbersMenu();
+	}
 	cout << "\n\nEnter how many numbers you want in your second set: ";
-	cin >> userInput;
+	getline(cin, userInput);
+	if (!checkInputInt(userInput))
+	{
+		cout << "Invalid input. The input must be number";
+		showSetsFromNumbersMenu();
+	}
 
 	cout << "\n\nEnter the numbers: ";
-	intStructure.secondSet = inputSetInteger(userInput);
+	intStructure.secondSet = inputSetInteger(stoi(userInput),22);
+	if (intStructure.secondSet.empty())
+	{
+		cout << "Invalid input. The input must be set of numbers";
+		showSetsFromNumbersMenu();
+	}
 
 }
 
@@ -430,6 +450,7 @@ bool showSetsFromNumbersMenu() {
 	case 5:showTheSections(); break;
 	case 6:showTheDifference(); break;
 	case 7:showTheSimetricDifference(); break;
+	case 10: showFileContent("history");
 	case 8:return false; break;
 	default: {cout << "Incorrect input!!! Try again!\n\n"; return false;
 		break; }
@@ -465,4 +486,49 @@ bool showMenu() {
 	}
 	return true;
 
+}
+
+void showFileContent(string fileName) {
+	ifstream file(fileName + ".txt");
+	string line, content[10];
+	if (file.is_open())
+	{
+		while (!file.eof())
+		{
+			getline(file, line);
+			if (line != "")
+			{
+				tokenize(line, content, ',');
+
+				cout << "ID: " << content[0] << endl
+					<< "First set: " << fileStringToPrintString(content[1], '|') << endl
+					<< "Second set: " << fileStringToPrintString(content[2], '|') << endl
+					<< "Firsd difference set: " << fileStringToPrintString(content[3], '|') << endl
+					<< "Second difference set: " << fileStringToPrintString(content[4], '|') << endl
+					<< "Section set: " << fileStringToPrintString(content[5], '|') << endl
+					<< "Union set: " << fileStringToPrintString(content[6], '|') << endl
+					<< "First is sub-set of the second: ";
+				if (content[7]=="1")
+				{
+					cout << "Yes"<<endl;
+				}
+				else
+				{
+					cout << "No"<<endl;
+				}
+				cout<< "Second is sub-set of the first: ";
+				if (content[8] == "1")
+				{
+					cout << "Yes"<<endl;
+				}
+				else
+				{
+					cout << "No"<<endl;
+				}
+			}
+			cout << "-----------------------------------------------------" << endl;
+		}
+	}
+	
+	file.close();
 }
